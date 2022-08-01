@@ -1,9 +1,9 @@
 #pragma once
 
 namespace Math {
-	const float Pi = 3.14159265359; // 180
-	const float PiDouble = 6.28318530718; // 360
-	const float HalfPi = 1.57079632679; // 90
+	const float Pi = 3.14159265359f; // 180
+	const float PiDouble = 6.28318530718f; // 360
+	const float HalfPi = 1.57079632679f; // 90
 
 	inline float DegToRad(float Degrees) {
 		return Degrees * (Pi / 180);
