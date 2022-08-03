@@ -16,8 +16,6 @@ int main() {
 
 	{
 		// Create Game
-		//SpaceShooter Game;
-		//Game.Initialize();
 
 		Ethrl::g_AudioSystem.PlayAudio("Main Theme", true);
 
@@ -41,16 +39,12 @@ int main() {
 
 			// Render
 			Ethrl::g_Renderer.BeginFrame();
-			//Game.Draw(Ethrl::g_Renderer);
 			Ethrl::g_Renderer.Draw(texture, {150, 50}, 0);
 			Ethrl::g_Renderer.EndFrame();
 		}
 		int I = getchar();
 	}
 
-	/*delete Font;
-	font->~Font();
-	title.~Text();*/
 	Ethrl::g_AudioSystem.Shutdown();
 	Ethrl::g_Renderer.Shutdown();
 }

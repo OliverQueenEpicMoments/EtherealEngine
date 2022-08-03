@@ -1,4 +1,5 @@
 #include "AudioSystem.h"
+#include "Core/Logger.h"
 #include <fmod.hpp>
 
 void Ethrl::AudioSystem::Initialize() {
@@ -26,12 +27,22 @@ void Ethrl::AudioSystem::AddAudio(const std::string& Name, const std::string& Fi
 	if (m_Sounds.find(Name) == m_Sounds.end()) {
 		FMOD::Sound* sound = nullptr;
 		m_FModSystem->createSound(FileName.c_str(), FMOD_DEFAULT, 0, &sound);
+
+		if (sound == nullptr) {
+			LOG("Error creating sound %s.", FileName.c_str());
+		}
+
 		m_Sounds[Name] = sound;
 	}
 }
 
 void Ethrl::AudioSystem::PlayAudio(const std::string& Name, bool Loop) {
 	auto Iter = m_Sounds.find(Name);
+
+	if (Iter == m_Sounds.end()) {
+		LOG("Error could not find sound %s.", Name.c_str());
+	}
+
 	if (Iter != m_Sounds.end()) {
 		FMOD::Sound* sound = Iter->second;
 
