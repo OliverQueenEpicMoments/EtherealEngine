@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Audio">
       <UniqueIdentifier>{77acd56c-061c-4feb-b55c-57bd73e7d756}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Models">
+      <UniqueIdentifier>{9ed421f2-8d2a-47f3-a22f-740bdecd877f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{a851278b-c9ce-4dbc-b193-6d0d141c7277}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -71,6 +77,9 @@
     </ClCompile>
     <ClCompile Include="Renderer\Text.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Texture.cpp">
+      <Filter>Source Files\Renderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -131,34 +140,21 @@
     <ClInclude Include="FrameWork\Game.h">
       <Filter>Source Files\FrameWork</Filter>
     </ClInclude>
+    <ClInclude Include="Renderer\Texture.h">
+      <Filter>Source Files\Renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\Enemy.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Model.txt.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Player.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Bullet.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
     <Text Include="..\Build\Assets\Asteroid.txt">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Models</Filter>
     </Text>
-    <Text Include="..\Build\Assets\Enemy Bullet.txt">
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Build\Assets\Kirby.png">
       <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Interceptor.txt">
+    </Image>
+    <Image Include="..\Build\Assets\sf2.bmp">
       <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Laser.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Super Missile.txt">
-      <Filter>Resource Files</Filter>
-    </Text>
+    </Image>
   </ItemGroup>
 </Project>

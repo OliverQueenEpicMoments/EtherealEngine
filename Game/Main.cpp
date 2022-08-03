@@ -21,6 +21,11 @@ int main() {
 
 		Ethrl::g_AudioSystem.PlayAudio("Main Theme", true);
 
+		// Images 
+		std::shared_ptr<Ethrl::Texture> texture = std::make_shared<Ethrl::Texture>();
+		texture->Create(Ethrl::g_Renderer, "Kirby.png");
+		//texture->Create(Ethrl::g_Renderer, "sf2.bmp");
+
 		bool Quit = false;
 		while (!Quit) {
 			// Update
@@ -37,11 +42,12 @@ int main() {
 			// Render
 			Ethrl::g_Renderer.BeginFrame();
 			//Game.Draw(Ethrl::g_Renderer);
+			Ethrl::g_Renderer.Draw(texture, {150, 50}, 0);
 			Ethrl::g_Renderer.EndFrame();
 		}
-
 		int I = getchar();
 	}
+
 	/*delete Font;
 	font->~Font();
 	title.~Text();*/

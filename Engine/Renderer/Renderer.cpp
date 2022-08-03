@@ -1,18 +1,19 @@
 #include "Renderer.h"
 #include <SDL.h>
 #include <SDL_ttf.h>
+#include <SDL_image.h>
 
 namespace Ethrl {
-	
-
 	void Renderer::Initialize() {
 		SDL_Init(SDL_INIT_VIDEO);
+		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 		TTF_Init();
 	}
 
 	void Renderer::Shutdown() {
 		SDL_DestroyRenderer(m_renderer);
 		SDL_DestroyWindow(m_window);
+		IMG_Quit();
 		TTF_Quit();
 	}
 
@@ -30,6 +31,18 @@ namespace Ethrl {
 
 	void Renderer::EndFrame() {
 		SDL_RenderPresent(m_renderer);
+	}
+
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle) {
+		Vector2 size = texture->GetSize();
+
+		SDL_Rect dest;
+		dest.x = (int)position.X;
+		dest.y = (int)position.Y;
+		dest.w = (int)size.X;
+		dest.h = (int)size.Y;
+
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, Angle, nullptr, SDL_FLIP_NONE);
 	}
 
 	void Renderer::DrawLine(float X1, float Y1, float X2, float Y2) {

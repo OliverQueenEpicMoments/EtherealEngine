@@ -1,6 +1,7 @@
 #pragma once
 #include "../Math/Color.h"
 #include "../Math/Vector2.h"
+#include "Texture.h"
 
 struct SDL_Renderer;
 struct SDL_Window;
@@ -9,6 +10,7 @@ namespace Ethrl {
 
 	class Renderer {
 		friend class Text;
+		friend class Texture;
 	public:
 		Renderer() = default;
 		~Renderer() = default;
@@ -21,6 +23,7 @@ namespace Ethrl {
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_ClearColor = color; }
 
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle = 0);
 		void DrawLine(float X1, float Y1, float X2, float Y2);
 		void DrawLine(const Vector2& V1, const Vector2& V2, const Color& color);
 		void DrawPoint(float X, float Y);
