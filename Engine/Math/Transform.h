@@ -5,7 +5,7 @@ namespace Ethrl {
 	struct Transform
 	{
 		Vector2 Position;
-		float Rotation;
-		float Scale;
+		float Rotation{ 0 };
+		Vector2 Scale{ 1, 1 };
 	};
 }

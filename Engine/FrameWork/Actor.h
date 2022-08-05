@@ -1,25 +1,32 @@
 #pragma once
 #include "GameObject.h"
-#include "../Renderer/Model.h"
+#include "Component.h"
+#include <vector>
 
 namespace Ethrl {
 	class Scene;
+	class Renderer;
 
 	class Actor : public GameObject {
 	public:
 		Actor() = default;
-		Actor(const Model& model, const Transform& transform) : 
-			GameObject{ transform }, 
-			m_Model{ model } {}
+		Actor(const Transform& transform) : m_Transform{ transform } {}
 
-		virtual void Update() override {}
+		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
+
+		void AddComponent(std::unique_ptr<Component> component);
+
 		virtual void OnCollision(Actor* Other) {}
 
-		float GetRadius() { return m_Model.GetRadius() * m_Transform.Scale; }
+		float GetRadius() { return 0; // return m_Model.GetRadius() * std::max(m_Transform.Scale.X, m_Transform.Scale.Y); 
+		}
 		std::string& GetTag() { return m_Tag; }
 
 		friend class Scene;
+		friend class Component;
+
+		Transform m_Transform;
 
 	protected:
 		std::string m_Tag;
@@ -30,6 +37,6 @@ namespace Ethrl {
 		float m_Damping = 1.0f;
 
 		Scene* m_Scene = nullptr;
-		Model m_Model;
+		std::vector<std::unique_ptr<Component>> m_Components;
 	};
 } 

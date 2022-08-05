@@ -13,6 +13,9 @@
 #include "FrameWork/Game.h"
 #include "FrameWork/Actor.h"
 
+#include "Components/PlayerComponent.h"
+#include "Components/SpriteComponent.h"
+
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"

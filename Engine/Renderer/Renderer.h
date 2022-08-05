@@ -7,7 +7,7 @@ struct SDL_Renderer;
 struct SDL_Window;
 
 namespace Ethrl {
-
+	struct Transform; // Struct or Class
 	class Renderer {
 		friend class Text;
 		friend class Texture;
@@ -23,7 +23,9 @@ namespace Ethrl {
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_ClearColor = color; }
 
-		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle = 0);
+		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle = 0, const Vector2& Scale = Vector2{ 1, 1 }, const Vector2& Registration = Vector2{.5f, .5f});
+		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& Registration = Vector2{ .5f, .5f });
+
 		void DrawLine(float X1, float Y1, float X2, float Y2);
 		void DrawLine(const Vector2& V1, const Vector2& V2, const Color& color);
 		void DrawPoint(float X, float Y);

@@ -37,6 +37,9 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{a851278b-c9ce-4dbc-b193-6d0d141c7277}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{f676c6c9-7412-4e1c-9b0c-6d68748801c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -75,14 +78,26 @@
     <ClCompile Include="Renderer\Font.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="Renderer\Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Renderer\Texture.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="Core\Logger.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Renderer\Text.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Color.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\PlayerComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteComponent.cpp">
+      <Filter>Source Files\Components</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +164,18 @@
     <ClInclude Include="Core\Logger.h">
       <Filter>Source Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="FrameWork\Component.h">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\PlayerComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\RenderComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt">
@@ -156,11 +183,11 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\Build\Assets\Kirby.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="..\Build\Assets\Images\sf2.bmp">
+      <Filter>Resource Files\Images</Filter>
     </Image>
-    <Image Include="..\Build\Assets\sf2.bmp">
-      <Filter>Resource Files</Filter>
+    <Image Include="..\Build\Assets\Images\Kirby.png">
+      <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
 </Project>

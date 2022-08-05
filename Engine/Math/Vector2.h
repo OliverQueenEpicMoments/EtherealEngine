@@ -57,20 +57,16 @@ namespace Ethrl {
 
 		float GetAngle();
 		static Vector2 Rotate(const Vector2& V, float Angle);
+
+		static const Vector2 One;
+		static const Vector2 Zero;
+		static const Vector2 Up;
+		static const Vector2 Down;
+		static const Vector2 Left;
+		static const Vector2 Right;
 	};
 
-	inline std::istream& operator >> (std::istream& stream, Vector2& V) {
-		std::string Line;
-		std::getline(stream, Line);
-
-		std::string XS = Line.substr(Line.find("{") + 1, Line.find(",") - Line.find("{") + 1);
-		V.X = std::stof(XS);
-
-		std::string YS = Line.substr(Line.find(",") + 1, Line.find("}") - Line.find(",") + 1);
-		V.Y = std::stof(YS);
-
-		return stream;
-	}
+	std::istream& operator >> (std::istream& stream, Vector2& V);
 
 	inline float Vector2::LengthSquared() { return X * X + Y * Y; }
 	inline float Vector2::Length() { return std::sqrt(X * X + Y * Y); }

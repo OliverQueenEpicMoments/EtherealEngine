@@ -1,4 +1,7 @@
 #include "Renderer.h"
+#include "Math/MathUtils.h"
+#include "Math/Transform.h"
+
 #include <SDL.h>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
@@ -33,16 +36,40 @@ namespace Ethrl {
 		SDL_RenderPresent(m_renderer);
 	}
 
-	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle) {
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle, const Vector2& Scale, const Vector2& Registration) {
 		Vector2 size = texture->GetSize();
+		size = size * Scale;
+
+		Vector2 Origin = size * Registration;
+		Vector2 TPosition = position - (size * .5f);
 
 		SDL_Rect dest;
-		dest.x = (int)position.X;
-		dest.y = (int)position.Y;
+		dest.x = (int)TPosition.X;
+		dest.y = (int)TPosition.Y;
 		dest.w = (int)size.X;
 		dest.h = (int)size.Y;
 
-		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, Angle, nullptr, SDL_FLIP_NONE);
+		SDL_Point Center{(int)Origin.X, (int)Origin.Y};
+
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, Angle, &Center, SDL_FLIP_NONE);
+	}
+
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& Registration) {
+		Vector2 size = texture->GetSize();
+		size = size * transform.Scale;
+
+		Vector2 Origin = size * Registration;
+		Vector2 TPosition = transform.Position - (size * .5f);
+
+		SDL_Rect dest;
+		dest.x = (int)TPosition.X;
+		dest.y = (int)TPosition.Y;
+		dest.w = (int)size.X;
+		dest.h = (int)size.Y;
+
+		SDL_Point Center{ (int)Origin.X, (int)Origin.Y };
+
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, transform.Rotation, &Center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::DrawLine(float X1, float Y1, float X2, float Y2) {

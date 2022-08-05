@@ -9,7 +9,7 @@ namespace Ethrl {
 		m_Radius = CalculateRadius();
 	}
 
-	void Model::Draw(Renderer& renderer, const Vector2& position, float Angle, float Scale) {
+	void Model::Draw(Renderer& renderer, const Vector2& position, float Angle, const Vector2& Scale) {
 		// Draw Model
 		for (int I = 0; I < m_points.size() - 1; I++) {
 			Ethrl::Vector2 P1 = Vector2::Rotate((m_points[I] * Scale), Angle) + position;

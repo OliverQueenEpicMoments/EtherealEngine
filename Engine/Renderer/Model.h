@@ -13,7 +13,7 @@ namespace Ethrl {
 
 		Model(const std::string& FileName);
 
-		void Draw(Renderer& renderer, const Vector2& position, float Angle, float Scale = 1);
+		void Draw(Renderer& renderer, const Vector2& position, float Angle, const Vector2& Scale = {1, 1});
 
 		void Load(const std::string& FileName);
 		float CalculateRadius();
