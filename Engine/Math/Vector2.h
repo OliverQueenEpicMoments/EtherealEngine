@@ -81,7 +81,7 @@ namespace Ethrl {
 	inline Vector2 Vector2::Normalized() {
 		float length = Length();
 
-		return Vector2{X / length, Y / length};
+		return (length == 0) ? Vector2{0, 0} : Vector2{X / length, Y / length};
 	}
 
 	inline void Vector2::Normalize() {

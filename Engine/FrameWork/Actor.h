@@ -17,6 +17,9 @@ namespace Ethrl {
 
 		void AddComponent(std::unique_ptr<Component> component);
 
+		template<typename T>
+		T* GetComponent();
+
 		virtual void OnCollision(Actor* Other) {}
 
 		float GetRadius() { return 0; // return m_Model.GetRadius() * std::max(m_Transform.Scale.X, m_Transform.Scale.Y); 
@@ -39,4 +42,14 @@ namespace Ethrl {
 		Scene* m_Scene = nullptr;
 		std::vector<std::unique_ptr<Component>> m_Components;
 	};
-} 
+
+	template<typename T>
+	inline T* Actor::GetComponent() {
+		for (auto& Component : m_Components) {
+			T* Result = dynamic_cast<T*>(Component.get());
+			if (Result) return (Result);
+		}
+
+		return nullptr;
+	}
+}

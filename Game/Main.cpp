@@ -1,5 +1,7 @@
 #include "Engine.h"
 #include <iostream>
+#include <Components/AudioComponent.h>
+#include <Components/PhysicsComponent.h>
 
 int main() {
 	/*std::cout << __FILE__ << std::endl;
@@ -23,6 +25,8 @@ int main() {
 
 
 		// Muisc Loop
+		Ethrl::g_AudioSystem.AddAudio("Laser", "Sounds/Laser.wav");
+
 		Ethrl::g_AudioSystem.PlayAudio("Main Theme", true);
 
 		// Images (kirby)
@@ -31,14 +35,23 @@ int main() {
 
 		// Create Actors
 		Ethrl::Scene scene;
-
-		Ethrl::Transform transform{ {400, 200}, 90, {2.5f, 2.5f} };
+		Ethrl::Transform transform{ {400, 300}, 0, {.15f, .15f} }; // Big Kirby
 		std::unique_ptr<Ethrl::Actor> actor = std::make_unique<Ethrl::Actor>(transform);
+
+		// Adding Components
 		std::unique_ptr<Ethrl::PlayerComponent> pcomponent = std::make_unique<Ethrl::PlayerComponent>();
 		actor->AddComponent(std::move(pcomponent));
+
 		std::unique_ptr<Ethrl::SpriteComponent> scomponent = std::make_unique<Ethrl::SpriteComponent>();
 		scomponent->m_Texture = texture;
 		actor->AddComponent(std::move(scomponent));
+
+		std::unique_ptr<Ethrl::AudioComponent> acomponent = std::make_unique<Ethrl::AudioComponent>();
+		acomponent->m_Sound = "laser";
+		actor->AddComponent(std::move(acomponent));
+
+		std::unique_ptr<Ethrl::PhysicsComponent> phycomponent = std::make_unique<Ethrl::PhysicsComponent>();
+		actor->AddComponent(std::move(phycomponent));
 
 		scene.Add(std::move(actor));
 
@@ -53,6 +66,7 @@ int main() {
 
 			std::cout << Ethrl::g_Time.time << std::endl; // Time
 
+			// Quit
 			if (Ethrl::g_InputSystem.GetKeyState(Ethrl::Key_Escape) == Ethrl::InputSystem::State::Pressed) Quit = true;
 
 			//Game.Update();
@@ -65,11 +79,10 @@ int main() {
 			Ethrl::g_Renderer.BeginFrame();
 
 			scene.Draw(Ethrl::g_Renderer); // Big kirby
-			Ethrl::g_Renderer.Draw(texture, { 400, 300 }, Angle, {.15f, .15f}, {.5f, .5f}); // Spinning Kirby
+			//Ethrl::g_Renderer.Draw(texture, { 400, 300 }, Angle, {.15f, .15f}, {.5f, .5f}); // Spinning Kirby
 
 			Ethrl::g_Renderer.EndFrame();
 		}
-		//int I = getchar();
 	}
 
 	Ethrl::g_AudioSystem.Shutdown();

@@ -156,6 +156,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
+    <ClCompile Include="Components\AudioComponent.cpp" />
+    <ClCompile Include="Components\PhysicsComponent.cpp" />
     <ClCompile Include="Components\PlayerComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
     <ClCompile Include="Core\File.cpp" />
@@ -177,6 +179,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio\AudioSystem.h" />
+    <ClInclude Include="Components\AudioComponent.h" />
+    <ClInclude Include="Components\PhysicsComponent.h" />
     <ClInclude Include="Components\PlayerComponent.h" />
     <ClInclude Include="Components\RenderComponent.h" />
     <ClInclude Include="Components\SpriteComponent.h" />
@@ -208,6 +212,14 @@
   <ItemGroup>
     <Image Include="..\Build\Assets\Images\Kirby.png" />
     <Image Include="..\Build\Assets\Images\sf2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Build\Assets\Sounds\Explosion.wav" />
+    <Media Include="..\Build\Assets\Sounds\Explosion2.wav" />
+    <Media Include="..\Build\Assets\Sounds\Explosion3.wav" />
+    <Media Include="..\Build\Assets\Sounds\Laser.wav" />
+    <Media Include="..\Build\Assets\Sounds\Shooting.wav" />
+    <Media Include="..\Build\Assets\Sounds\Theme.mp3" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
