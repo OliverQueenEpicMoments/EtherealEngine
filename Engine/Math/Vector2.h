@@ -13,6 +13,9 @@ namespace Ethrl {
 		Vector2(int X, int Y) : X{ (float)X }, Y{ (float)Y } {};
 
 		void Set(float X, float Y) { this->X = X; this->Y = Y; }
+		float operator [] (size_t Index) const { return (&X)[Index]; }
+		float& operator [] (size_t Index) { return (&X)[Index]; }
+
 
 		// Arithmetic Operators
 		// V2 = V2 + V2
@@ -33,9 +36,9 @@ namespace Ethrl {
 		Vector2& operator /= (const Vector2& V) { this->X /= V.X, this->Y /= V.Y; return *this; }
 
 		Vector2& operator += (float S) { this->X += S, this->Y += S; return *this; }
-		Vector2& operator -= (float S) { this->X += S, this->Y += S; return *this; }
-		Vector2& operator *= (float S) { this->X += S, this->Y += S; return *this; }
-		Vector2& operator /= (float S) { this->X += S, this->Y += S; return *this; }
+		Vector2& operator -= (float S) { this->X -= S, this->Y -= S; return *this; }
+		Vector2& operator *= (float S) { this->X *= S, this->Y *= S; return *this; }
+		Vector2& operator /= (float S) { this->X /= S, this->Y /= S; return *this; }
 
 		// Unary
 		// V2 = -V2
@@ -70,13 +73,8 @@ namespace Ethrl {
 
 	inline float Vector2::LengthSquared() { return X * X + Y * Y; }
 	inline float Vector2::Length() { return std::sqrt(X * X + Y * Y); }
-	inline float Vector2::DistanceSquared(const Vector2& V) {
-		return ((*this) - V).LengthSquared();
-	}
-
-	inline float Vector2::Distance(const Vector2& V) {
-		return ((*this) - V).Length();
-	}
+	inline float Vector2::DistanceSquared(const Vector2& V) { return ((*this) - V).LengthSquared(); }
+	inline float Vector2::Distance(const Vector2& V) { return ((*this) - V).Length(); }
 
 	inline Vector2 Vector2::Normalized() {
 		float length = Length();
@@ -84,13 +82,8 @@ namespace Ethrl {
 		return (length == 0) ? Vector2{0, 0} : Vector2{X / length, Y / length};
 	}
 
-	inline void Vector2::Normalize() {
-		(*this) /= Length();
-	}
-
-	inline float Vector2::GetAngle() {
-		return std::atan2(Y, X);
-	}
+	inline void Vector2::Normalize() { (*this) /= Length(); }
+	inline float Vector2::GetAngle() { return std::atan2(Y, X); }
 
 	inline Vector2 Vector2::Rotate(const Vector2& V, float Angle) {
 		float X = V.X * std::cos(Angle) - V.Y * std::sin(Angle);
