@@ -44,7 +44,8 @@ namespace Ethrl {
 
 		// Comparison
 		bool operator == (const Vector3& V) const { return (this->X == V.X && this->Y == V.Y && this->Z == V.Z); }
-		bool operator != (const Vector3& V) const { return (this->X != V.X || this->Y != V.Y || this->Z != V.Z); }
+		//bool operator != (const Vector3& V) const { return (this->X != V.X || this->Y != V.Y || this->Z != V.Z); }
+		bool operator != (const Vector3& V) const { return !(*this == V); }
 
 		// Functions
 		float LengthSquared();
