@@ -1,4 +1,5 @@
 #include "File.h"
+#include "Logger.h"
 #include <filesystem>
 #include <fstream>
 
@@ -9,8 +10,7 @@ namespace Ethrl {
 	std::string GetFilePath() {
 		return std::filesystem::current_path().string();
 	}
-	bool FileExists(const std::string& PathName)
-	{
+	bool FileExists(const std::string& PathName) {
 		return std::filesystem::exists(PathName);
 	}
 
@@ -23,7 +23,11 @@ namespace Ethrl {
 	}
 
 	bool ReadFile(const std::string& PathName, std::string& Buffer) {
-		if (!FileExists(PathName)) return false;
+		if (!FileExists(PathName)) {
+			LOG("Error could not read file %s", PathName.c_str());
+
+			return false;
+		}
 
 		// Get file and set buffer
 		size_t size;

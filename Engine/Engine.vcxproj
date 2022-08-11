@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Audio\AudioSystem.cpp" />
     <ClCompile Include="Components\AudioComponent.cpp" />
+    <ClCompile Include="Components\ModelComponent.cpp" />
     <ClCompile Include="Components\PhysicsComponent.cpp" />
     <ClCompile Include="Components\PlayerComponent.cpp" />
     <ClCompile Include="Components\SpriteComponent.cpp" />
@@ -214,6 +215,8 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt" />
+    <Text Include="..\Build\Assets\Models\Bullet.txt" />
+    <Text Include="..\Build\Assets\Models\Player.txt" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Build\Assets\Images\Kirby.png" />

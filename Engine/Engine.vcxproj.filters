@@ -114,6 +114,9 @@
     <ClCompile Include="Math\Matrix3x3.cpp">
       <Filter>Math</Filter>
     </ClCompile>
+    <ClCompile Include="Components\ModelComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Math\MathUtils.h">
@@ -212,6 +215,12 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt">
+      <Filter>Resource Files\Models</Filter>
+    </Text>
+    <Text Include="..\Build\Assets\Models\Player.txt">
+      <Filter>Resource Files\Models</Filter>
+    </Text>
+    <Text Include="..\Build\Assets\Models\Bullet.txt">
       <Filter>Resource Files\Models</Filter>
     </Text>
   </ItemGroup>

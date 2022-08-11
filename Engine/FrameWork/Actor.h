@@ -15,6 +15,8 @@ namespace Ethrl {
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 
+		void AddChild(std::unique_ptr<Actor> child);
+
 		void AddComponent(std::unique_ptr<Component> component);
 
 		template<typename T>
@@ -40,7 +42,10 @@ namespace Ethrl {
 		float m_Damping = 1.0f;
 
 		Scene* m_Scene = nullptr;
+		Actor* m_Parent = nullptr;
+
 		std::vector<std::unique_ptr<Component>> m_Components;
+		std::vector<std::unique_ptr<Actor>> m_Children;
 	};
 
 	template<typename T>

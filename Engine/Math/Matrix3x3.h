@@ -12,8 +12,8 @@ namespace Ethrl {
 		Vector3 operator [] (size_t Index) const { return Rows[Index]; }
 		Vector3& operator [] (size_t Index) { return Rows[Index]; }
 
-		Vector2 operator * (const Vector2& V); // M2x2 * V2
-		Matrix3x3 operator * (const Matrix3x3& mx); // MX3x3 * MX3x3
+		Vector2 operator * (const Vector2& V) const; // M2x2 * V2
+		Matrix3x3 operator * (const Matrix3x3& mx) const; // MX3x3 * MX3x3
 
 		static Matrix3x3 CreateScale(const Vector2& Scale);
 		static Matrix3x3 CreateScale(float Scale);
@@ -30,7 +30,7 @@ namespace Ethrl {
 		Rows[2] = Row3;
 	}
 
-	inline Vector2 Matrix3x3::operator*(const Vector2& V) {
+	inline Vector2 Matrix3x3::operator*(const Vector2& V) const {
 		Vector2 Result;
 
 		Result.X = V.X * Rows[0][0] + V.Y * Rows[0][1] + Rows[0][2];
@@ -39,7 +39,7 @@ namespace Ethrl {
 		return Result;
 	}
 
-	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx) {
+	inline Matrix3x3 Matrix3x3::operator*(const Matrix3x3& mx) const {
 		Matrix3x3 Result;
 
 		// Row 1

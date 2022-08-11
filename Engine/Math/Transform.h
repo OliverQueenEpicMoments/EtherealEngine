@@ -10,6 +10,25 @@ namespace Ethrl {
 		float Rotation{ 0 };
 		Vector2 Scale{ 1, 1 };
 
+		Matrix3x3 matrix;
+
+		void Update() {
+			Matrix3x3 mxScale = Matrix3x3::CreateScale(Scale);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(Rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(Position);
+
+			matrix = { mxTranslation * mxRotation * mxScale };
+		}
+
+		void Update(const Matrix3x3& parent) {
+			Matrix3x3 mxScale = Matrix3x3::CreateScale(Scale);
+			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(Rotation));
+			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(Position);
+
+			matrix = { mxTranslation * mxRotation * mxScale };
+			matrix = parent * matrix;
+		}
+
 		operator Matrix2x2 () const {
 			Matrix2x2 mxScale = Matrix2x2::CreateScale(Scale);
 			Matrix2x2 mxRotation = Matrix2x2::CreateRotation(Math::DegToRad(Rotation));
@@ -22,7 +41,7 @@ namespace Ethrl {
 			Matrix3x3 mxRotation = Matrix3x3::CreateRotation(Math::DegToRad(Rotation));
 			Matrix3x3 mxTranslation = Matrix3x3::CreateTranslation(Position);
 
-			return { mxScale * mxRotation * mxTranslation };
+			return { mxTranslation * mxRotation * mxScale };
 		}
 	};
 }
