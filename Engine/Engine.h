@@ -26,6 +26,7 @@
 #include "Core/Time.h"
 
 #include "Audio/AudioSystem.h"
+#include "Resource/ResourceManager.h"
 
 #include <memory>
 #include <vector>
@@ -35,4 +36,5 @@ namespace Ethrl {
 	extern InputSystem g_InputSystem;
 	extern Ehtrl::Time g_Time;
 	extern AudioSystem g_AudioSystem;
+	extern ResourceManager g_Resources;
 }

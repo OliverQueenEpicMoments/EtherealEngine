@@ -1,5 +1,6 @@
 #pragma once
-#include "..\Math\Vector2.h"
+#include "Math\Vector2.h"
+#include "Resource/Resource.h"
 #include <string>
 
 struct SDL_Texture;
@@ -7,12 +8,13 @@ struct SDL_Texture;
 namespace Ethrl {
 	class Renderer;
 
-	class Texture {
+	class Texture : public Resource {
 	friend class Renderer;
 	public:
 		Texture() = default;
 		~Texture ();
 
+		bool Create(const std::string& FileName, void* Data = nullptr) override;
 		bool Create(Renderer& renderer, const std::string& FileName);
 
 		Vector2 GetSize() const;

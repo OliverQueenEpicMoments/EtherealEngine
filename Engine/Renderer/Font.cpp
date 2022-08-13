@@ -11,6 +11,10 @@ namespace Ethrl {
 		m_tffFont = nullptr;
 	}
 
+	bool Font::Create(const std::string& FileName, void* Data) {
+		return false;
+	}
+
 	void Font::Load(const std::string& FileName, int FontSize) {
 		m_tffFont = TTF_OpenFont(FileName.c_str(), FontSize);
 	}

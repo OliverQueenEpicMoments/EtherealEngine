@@ -13,28 +13,32 @@ int main() {
 	Ethrl::g_Renderer.Initialize();
 	Ethrl::g_InputSystem.Initialize();
 	Ethrl::g_AudioSystem.Initialize();
+	Ethrl::g_Resources.Initialize();
 
 	// Create Window
 	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600);
 	Ethrl::g_Renderer.SetClearColor(Ethrl::Color{ 100, 0, 0, 255 });
+
 	{
 		// Create Game
 
 
 		// Muisc Loop
-		Ethrl::g_AudioSystem.AddAudio("Laser", "Sounds/Laser.wav");
 		Ethrl::g_AudioSystem.PlayAudio("Main Theme", true);
+		Ethrl::g_AudioSystem.AddAudio("Laser", "Sounds/Laser.wav");
 
 		// Images (kirby)
-		std::shared_ptr<Ethrl::Texture> texture = std::make_shared<Ethrl::Texture>();
-		texture->Create(Ethrl::g_Renderer, "Images/Kirby.png");
+		//std::shared_ptr<Ethrl::Texture> texture = std::make_shared<Ethrl::Texture>();
+		//texture->Create(Ethrl::g_Renderer, "Images/Kirby.png");
+		std::shared_ptr<Ethrl::Texture> texture = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
+		std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
 
 		// Model
-		std::shared_ptr<Ethrl::Model> model = std::make_shared<Ethrl::Model>();
-		model->Create("Models/Player.txt");
+		//std::shared_ptr<Ethrl::Model> model = std::make_shared<Ethrl::Model>();
+		//model->Create("Models/Player.txt");
 
 		// Create Actors
-		Ethrl::Scene scene;
+ 		Ethrl::Scene scene;
 
 		Ethrl::Transform transform{ {400, 300}, 0, {3.0f, 3.0f} }; // Big Kirby
 		std::unique_ptr<Ethrl::Actor> actor = std::make_unique<Ethrl::Actor>(transform);
@@ -50,7 +54,7 @@ int main() {
 
 		// Model
 		std::unique_ptr<Ethrl::ModelComponent> mcomponent = std::make_unique<Ethrl::ModelComponent>();
-		mcomponent->m_Model = model;
+		mcomponent->m_Model = Ethrl::g_Resources.Get<Ethrl::Model>("Models/Player.txt");
 		actor->AddComponent(std::move(mcomponent));
 
 		// Audio
@@ -67,7 +71,7 @@ int main() {
 		std::unique_ptr<Ethrl::Actor> child = std::make_unique<Ethrl::Actor>(transformC);
 
 		std::unique_ptr<Ethrl::ModelComponent> mcomponentC = std::make_unique<Ethrl::ModelComponent>();
-		mcomponentC->m_Model = model;
+		mcomponentC->m_Model = Ethrl::g_Resources.Get<Ethrl::Model>("Models/Player.txt");
 		child->AddComponent(std::move(mcomponentC));
 		
 		actor->AddChild(std::move(child));
@@ -104,7 +108,6 @@ int main() {
 			Ethrl::g_Renderer.EndFrame();
 		}
 	}
-
 	Ethrl::g_AudioSystem.Shutdown();
 	Ethrl::g_Renderer.Shutdown();
 }

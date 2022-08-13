@@ -1,10 +1,11 @@
 #pragma once
 #include"Renderer.h"
+#include "Resource/Resource.h"
 #include <vector>
 #include <string>
 
 namespace Ethrl {
-	class Model {
+	class Model : public Resource {
 	public:
 		Model() = default;
 		Model(std::vector<Ethrl::Vector2>& points, const Ethrl::Color& color) :
@@ -13,7 +14,7 @@ namespace Ethrl {
 
 		Model(const std::string& FileName);
 
-		bool Create(const std::string& FileName);
+		bool Create(const std::string& FileName, void* Data) override;
 
 		void Draw(Renderer& renderer, const Vector2& position, float Angle, const Vector2& Scale = {1, 1});
 		void Draw(Renderer& renderer, const Transform& transform);

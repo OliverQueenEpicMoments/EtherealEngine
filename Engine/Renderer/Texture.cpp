@@ -9,6 +9,13 @@ namespace Ethrl {
 		if (m_Texture) SDL_DestroyTexture(m_Texture);
 	}
 
+	bool Texture::Create(const std::string& FileName, void* Data) {
+		// Check data is not null
+
+		Renderer* renderer = static_cast<Renderer*>(Data);
+		return Create(*renderer, FileName);
+	}
+
 	bool Texture::Create(Renderer& renderer, const std::string& FileName) {
 		// Load Surface
 		SDL_Surface* surface = IMG_Load(FileName.c_str());

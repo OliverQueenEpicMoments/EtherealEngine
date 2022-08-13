@@ -1,16 +1,18 @@
 #pragma once
+#include "Resource/Resource.h"
 #include <string>
 
 struct _TTF_Font;
 
 namespace Ethrl {
-	class Font {
+	class Font : public Resource {
 
 	public:
 		Font() = default;
 		Font(const std::string& FileName, int FontSize);
 		~Font();
 
+		bool Create(const std::string& FileName, void* Data = nullptr) override;
 		void Load(const std::string& FileName, int FontSize);
 
 		friend class Text;
