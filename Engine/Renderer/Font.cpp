@@ -11,7 +11,7 @@ namespace Ethrl {
 		m_tffFont = nullptr;
 	}
 
-	bool Font::Create(const std::string& FileName, void* Data) {
+	bool Font::Create(std::string FileName, ...) {
 		return false;
 	}
 

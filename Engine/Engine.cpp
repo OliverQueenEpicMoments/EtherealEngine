@@ -6,4 +6,13 @@ namespace Ethrl {
 	Renderer g_Renderer;
 	AudioSystem g_AudioSystem;
 	ResourceManager g_Resources;
+
+	void Engine::Register() {
+		REGISTER_CLASS(Actor);
+		REGISTER_CLASS(AudioComponent);
+		REGISTER_CLASS(PhysicsComponent);
+		REGISTER_CLASS(PlayerComponent);
+		REGISTER_CLASS(ModelComponent);
+		REGISTER_CLASS(SpriteComponent);
+	}
 }

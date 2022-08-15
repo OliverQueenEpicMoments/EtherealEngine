@@ -46,6 +46,9 @@
     <Filter Include="Source Files\Resource">
       <UniqueIdentifier>{101a2cf6-3143-4aed-ba51-448aa3bc75a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Fonts">
+      <UniqueIdentifier>{ddbe252f-258d-473a-b952-fd4314558a62}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -224,6 +227,12 @@
     <ClInclude Include="Resource\ResourceManager.h">
       <Filter>Source Files\Resource</Filter>
     </ClInclude>
+    <ClInclude Include="FrameWork\Singleton.h">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClInclude>
+    <ClInclude Include="FrameWork\Factory.h">
+      <Filter>Source Files\FrameWork</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt">
@@ -263,5 +272,10 @@
     <Media Include="..\Build\Assets\Sounds\Theme.mp3">
       <Filter>Resource Files\Sounds</Filter>
     </Media>
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Build\Assets\Fonts\Blox2.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
   </ItemGroup>
 </Project>

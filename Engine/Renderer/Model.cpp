@@ -12,13 +12,12 @@ namespace Ethrl {
 		m_Radius = CalculateRadius();
 	}
 
-	bool Model::Create(const std::string& FileName, void* Data) {
+	bool Model::Create(std::string FileName, ...) {
 		if (!Load(FileName)) {
 			LOG("Error could not create file %s", FileName.c_str());
 
 			return false;
 		}
-
 		return true;
 	}
 

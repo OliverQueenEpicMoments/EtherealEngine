@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Input/InputSystem.h"
 
 #include "Renderer/Renderer.h"
@@ -14,6 +15,8 @@
 #include "FrameWork/Scene.h"
 #include "FrameWork/Game.h"
 #include "FrameWork/Actor.h"
+#include "FrameWork/Singleton.h"
+#include "FrameWork/Factory.h"
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
@@ -37,4 +40,10 @@ namespace Ethrl {
 	extern Ehtrl::Time g_Time;
 	extern AudioSystem g_AudioSystem;
 	extern ResourceManager g_Resources;
+
+	class Engine : public Singleton<Engine> {
+	public:
+		void Register();
+
+	};
 }

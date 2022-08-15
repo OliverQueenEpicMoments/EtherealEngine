@@ -14,7 +14,7 @@ namespace Ethrl {
 		Texture() = default;
 		~Texture ();
 
-		bool Create(const std::string& FileName, void* Data = nullptr) override;
+		bool Create(std::string FileName, ...) override;
 		bool Create(Renderer& renderer, const std::string& FileName);
 
 		Vector2 GetSize() const;

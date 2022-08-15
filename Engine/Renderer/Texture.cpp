@@ -9,11 +9,15 @@ namespace Ethrl {
 		if (m_Texture) SDL_DestroyTexture(m_Texture);
 	}
 
-	bool Texture::Create(const std::string& FileName, void* Data) {
-		// Check data is not null
+	bool Texture::Create(std::string FileName, ...) {
+		va_list args;
+		va_start(args, FileName);
 
-		Renderer* renderer = static_cast<Renderer*>(Data);
-		return Create(*renderer, FileName);
+		Renderer& renderer = va_arg(args, Renderer);
+
+		va_end(args);
+
+		return Create(renderer, FileName);
 	}
 
 	bool Texture::Create(Renderer& renderer, const std::string& FileName) {

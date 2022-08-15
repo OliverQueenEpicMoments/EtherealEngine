@@ -2,10 +2,6 @@
 #include <iostream>
 
 int main() {
-	/*std::cout << __FILE__ << std::endl;
-	std::cout << __LINE__ << std::endl;
-	std::cout << __FUNCTION__ << std::endl;*/
-
 	Ethrl::InitializeMemory();
 	Ethrl::SetFilePath("../Assets");
 
@@ -14,6 +10,9 @@ int main() {
 	Ethrl::g_InputSystem.Initialize();
 	Ethrl::g_AudioSystem.Initialize();
 	Ethrl::g_Resources.Initialize();
+
+	// Register
+	Ethrl::Engine::Instance().Register();
 
 	// Create Window
 	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600);
@@ -27,24 +26,22 @@ int main() {
 		Ethrl::g_AudioSystem.PlayAudio("Main Theme", true);
 		Ethrl::g_AudioSystem.AddAudio("Laser", "Sounds/Laser.wav");
 
-		// Images (kirby)
+		// Images 
 		//std::shared_ptr<Ethrl::Texture> texture = std::make_shared<Ethrl::Texture>();
 		//texture->Create(Ethrl::g_Renderer, "Images/Kirby.png");
-		std::shared_ptr<Ethrl::Texture> texture = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
-		std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
-
-		// Model
-		//std::shared_ptr<Ethrl::Model> model = std::make_shared<Ethrl::Model>();
-		//model->Create("Models/Player.txt");
+		//std::shared_ptr<Ethrl::Texture> texture = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
+		//std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
+		auto texture = Ethrl::g_Resources.Get<Ethrl::Texture>("Images/Kirby.png", Ethrl::g_Renderer);
 
 		// Create Actors
  		Ethrl::Scene scene;
 
 		Ethrl::Transform transform{ {400, 300}, 0, {3.0f, 3.0f} }; // Big Kirby
-		std::unique_ptr<Ethrl::Actor> actor = std::make_unique<Ethrl::Actor>(transform);
+		std::unique_ptr<Ethrl::Actor> actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Actor");
+		actor->m_Transform = transform;
 
 		// Adding Components
-		std::unique_ptr<Ethrl::PlayerComponent> pcomponent = std::make_unique<Ethrl::PlayerComponent>();
+		std::unique_ptr<Ethrl::Component> pcomponent = Ethrl::Factory::Instance().Create<Ethrl::Component>("PlayerComponent");
 		actor->AddComponent(std::move(pcomponent));
 
 		// Sprite
@@ -62,8 +59,11 @@ int main() {
 		acomponent->m_Sound = "laser";
 		actor->AddComponent(std::move(acomponent));
 
+		// Font
+		auto font = Ethrl::g_Resources.Get<Ethrl::Font>("Fonts/Blox2.ttf", 10);
+
 		// Physics
-		std::unique_ptr<Ethrl::PhysicsComponent> phycomponent = std::make_unique<Ethrl::PhysicsComponent>();
+		std::unique_ptr<Ethrl::Component> phycomponent = Ethrl::Factory::Instance().Create<Ethrl::Component>("PhysicsComponent");
 		actor->AddComponent(std::move(phycomponent));
 
 		// Child Actor

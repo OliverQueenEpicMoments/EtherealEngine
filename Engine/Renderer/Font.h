@@ -12,7 +12,7 @@ namespace Ethrl {
 		Font(const std::string& FileName, int FontSize);
 		~Font();
 
-		bool Create(const std::string& FileName, void* Data = nullptr) override;
+		bool Create(std::string FileName, ...) override;
 		void Load(const std::string& FileName, int FontSize);
 
 		friend class Text;
