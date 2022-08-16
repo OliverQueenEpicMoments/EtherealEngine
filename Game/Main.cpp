@@ -5,6 +5,18 @@ int main() {
 	Ethrl::InitializeMemory();
 	Ethrl::SetFilePath("../Assets");
 
+	rapidjson::Document document;
+	bool success = Ethrl::Json::Load("JSON.txt", document);
+	assert(success);
+
+	int i1;
+	Ethrl::Json::Get(document, "integer1", i1);
+	std::cout << i1 << std::endl;
+
+	int i2;
+	Ethrl::Json::Get(document, "integer2", i2);
+	std::cout << i2 << std::endl;
+
 	// Initialize Engine
 	Ethrl::g_Renderer.Initialize();
 	Ethrl::g_InputSystem.Initialize();
@@ -27,10 +39,6 @@ int main() {
 		Ethrl::g_AudioSystem.AddAudio("Laser", "Sounds/Laser.wav");
 
 		// Images 
-		//std::shared_ptr<Ethrl::Texture> texture = std::make_shared<Ethrl::Texture>();
-		//texture->Create(Ethrl::g_Renderer, "Images/Kirby.png");
-		//std::shared_ptr<Ethrl::Texture> texture = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
-		//std::shared_ptr<Ethrl::Texture> texture1 = Ethrl::g_Resources.Get<Ethrl::Texture> ("Images/Kirby.png", &Ethrl::g_Renderer);
 		auto texture = Ethrl::g_Resources.Get<Ethrl::Texture>("Images/Kirby.png", Ethrl::g_Renderer);
 
 		// Create Actors

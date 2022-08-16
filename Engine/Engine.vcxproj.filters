@@ -49,6 +49,9 @@
     <Filter Include="Resource Files\Fonts">
       <UniqueIdentifier>{ddbe252f-258d-473a-b952-fd4314558a62}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Serialization">
+      <UniqueIdentifier>{1340194d-f07c-4af6-a334-8a46ade0386b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -125,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="Components\ModelComponent.cpp">
       <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Serialization\Json.cpp">
+      <Filter>Source Files\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +239,9 @@
     <ClInclude Include="FrameWork\Factory.h">
       <Filter>Source Files\FrameWork</Filter>
     </ClInclude>
+    <ClInclude Include="Serialization\Json.h">
+      <Filter>Source Files\Serialization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt">
@@ -243,6 +252,9 @@
     </Text>
     <Text Include="..\Build\Assets\Models\Bullet.txt">
       <Filter>Resource Files\Models</Filter>
+    </Text>
+    <Text Include="..\Build\Assets\Level.txt">
+      <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
   <ItemGroup>
