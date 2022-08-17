@@ -11,6 +11,10 @@ namespace Ethrl {
 		void Play(std::string Name, bool Loop);
 		void Stop();
 
+		virtual bool Write(const rapidjson::Value& value) const override;
+
+		virtual bool Read(const rapidjson::Value& value) override;
+
 		std::string m_Sound;
 		bool m_PlayOnAwake = false;
 		float m_Volume = 1;
@@ -18,6 +22,6 @@ namespace Ethrl {
 		bool m_Loop = false;
 
 	private:
-
+		
 	};
 }

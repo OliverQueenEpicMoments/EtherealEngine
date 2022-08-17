@@ -3,14 +3,25 @@
 #include "Matrix2x2.h"
 #include "Matrix3x3.h"
 #include "MathUtils.h"
+#include "Serialization/ISerializable.h"
 
 namespace Ethrl {
-	struct Transform {
+	struct Transform : public ISerializable {
 		Vector2 Position;
 		float Rotation{ 0 };
 		Vector2 Scale{ 1, 1 };
 
 		Matrix3x3 matrix;
+
+		Transform() = default;
+		Transform(const Vector2& position, float rotation, const Vector2& scale) :
+			Position{ position },
+			Rotation{ rotation },
+			Scale{ scale }
+		{}
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Update() {
 			Matrix3x3 mxScale = Matrix3x3::CreateScale(Scale);

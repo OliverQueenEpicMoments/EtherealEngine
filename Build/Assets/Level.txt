@@ -5,20 +5,32 @@
          "name":"Player",
          "tag":"Player",
          "transform":{
-            "position":[
+            "Position":[
                400,
                300
             ],
-            "scale":[
+            "Scale":[
                2,
                2
             ],
-            "rotation":0
+            "Rotation":0
          },
          "components":[
             {
                "type":"PlayerComponent",
-               "speed":200
+               "Speed":200
+            },
+            {
+               "type":"ModelComponent",
+               "model_name":"Models/Player.txt"
+            },
+            {
+               "type":"PhysicsComponent",
+               "Damping":1
+            },
+            {
+               "type":"SpriteComponent",
+               "SpriteName":"Images/Kirby.png"
             }
          ]
       }

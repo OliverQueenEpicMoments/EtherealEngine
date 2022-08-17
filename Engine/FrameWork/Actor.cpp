@@ -1,4 +1,5 @@
 #include "Actor.h"
+#include "Factory.h"
 #include "Components/RenderComponent.h"
 
 namespace Ethrl {
@@ -26,6 +27,31 @@ namespace Ethrl {
 		for (auto& child : m_Children) {
 			child->Draw(renderer);
 		}
+	}
+
+	bool Actor::Write(const rapidjson::Value& value) const {
+		return true;
+	}
+
+	bool Actor::Read(const rapidjson::Value& value) {
+		READ_DATA(value, tag);
+		READ_DATA(value, name);
+
+		m_Transform.Read(value["transform"]);
+
+		if (value.HasMember("components") && value["components"].IsArray()) {
+			for (auto& componentvalue : value["components"].GetArray()) {
+				std::string type;
+				READ_DATA(componentvalue, type);
+
+				auto component = Factory::Instance().Create<Component>(type);
+				if (component) {
+					component->Read(componentvalue);
+					AddComponent(std::move(component));
+				}
+			}
+		}
+		return true;
 	}
 
 	void Actor::AddChild(std::unique_ptr<Actor> child) {

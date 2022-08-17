@@ -9,7 +9,7 @@ namespace Ethrl {
 	class Renderer;
 	class Game;
 
-	class Scene {
+	class Scene : public ISerializable {
 	public:
 		Scene() = default;
 		Scene(Game* game) : m_Game{ game } {}
@@ -17,6 +17,9 @@ namespace Ethrl {
 
 		void Update();
 		void Draw(Renderer& renderer);
+
+		virtual bool Write(const rapidjson::Value& value) const override;
+		virtual bool Read(const rapidjson::Value& value) override;
 
 		void Add(std::unique_ptr<Actor> actor);
 

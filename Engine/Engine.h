@@ -46,6 +46,5 @@ namespace Ethrl {
 	class Engine : public Singleton<Engine> {
 	public:
 		void Register();
-
 	};
 }

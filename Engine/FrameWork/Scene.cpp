@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "Actor.h"
+#include "Factory.h"
 #include <algorithm>
 #include <iostream>
 
@@ -35,6 +36,30 @@ namespace Ethrl {
 		for (auto& actor : m_Actors) {
 			actor->Draw(renderer);
 		}
+	}
+
+	bool Scene::Write(const rapidjson::Value& value) const {
+		return true;
+	}
+
+	bool Scene::Read(const rapidjson::Value& value) {
+		if (!value.HasMember("actors") || !value["actors"].IsArray()) {
+			return false;
+		}
+
+		// Read Actors
+		for (auto& actorvalue : value["actors"].GetArray()) {
+			std::string type;
+			READ_DATA(actorvalue, type);
+
+			auto actor = Factory::Instance().Create<Actor>(type);
+			if (actor) {
+				// Read Actor
+				actor->Read(actorvalue);
+				Add(std::move(actor));
+			}
+		}
+		return true;
 	}
 
 	void Scene::Add(std::unique_ptr<Actor> actor) {

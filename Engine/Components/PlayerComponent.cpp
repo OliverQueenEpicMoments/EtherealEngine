@@ -13,7 +13,7 @@ namespace Ethrl {
 		if (g_InputSystem.GetKeyState(Ethrl::Key_W) == InputSystem::State::Held) {
 			//Direction = Vector2::Up;
 
-			Thrust = 300;
+			Thrust = Speed;
 		}
 
 		auto component = m_Owner->GetComponent<PhysicsComponent>();
@@ -52,5 +52,15 @@ namespace Ethrl {
 				component->Play("Laser", false);
 			}
 		}
+	}
+
+	bool PlayerComponent::Write(const rapidjson::Value& value) const {
+		return false;
+	}
+
+	bool PlayerComponent::Read(const rapidjson::Value& value) {
+		READ_DATA(value, Speed);
+
+		return true;
 	}
 }

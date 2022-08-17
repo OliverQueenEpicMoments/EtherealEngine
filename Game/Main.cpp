@@ -5,38 +5,6 @@ int main() {
 	Ethrl::InitializeMemory();
 	Ethrl::SetFilePath("../Assets");
 
-	rapidjson::Document document;
-	bool success = Ethrl::Json::Load("json.txt", document);
-	assert(success);
-
-	std::string str;
-	Ethrl::Json::Get(document, "string", str);
-	std::cout << str << std::endl;
-
-	bool b;
-	Ethrl::Json::Get(document, "boolean", b);
-	std::cout << b << std::endl;
-
-	int i1;
-	Ethrl::Json::Get(document, "integer1", i1);
-	std::cout << i1 << std::endl;
-
-	int i2;
-	Ethrl::Json::Get(document, "integer2", i2);
-	std::cout << i2 << std::endl;
-
-	float f;
-	Ethrl::Json::Get(document, "float", f);
-	std::cout << f << std::endl;
-
-	Ethrl::Vector2 v2;
-	Ethrl::Json::Get(document, "vector2", v2);
-	std::cout << v2 << std::endl;
-
-	Ethrl::Color color;
-	Ethrl::Json::Get(document, "color", color);
-	std::cout << color << std::endl;
-
 	// Initialize Engine
 	Ethrl::g_Renderer.Initialize();
 	Ethrl::g_InputSystem.Initialize();
@@ -51,8 +19,13 @@ int main() {
 	Ethrl::g_Renderer.SetClearColor(Ethrl::Color{ 100, 0, 0, 255 });
 
 	{
-		// Create Actors
+		// Create Scene
  		Ethrl::Scene scene;
+
+		rapidjson::Document document;
+		bool success = Ethrl::Json::Load("Level.txt", document);
+
+		scene.Read(document);
 
 		bool Quit = false;
 		while (!Quit) {

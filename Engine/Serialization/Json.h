@@ -2,6 +2,8 @@
 #include "rapidjson/document.h"
 #include <string>
 
+#define READ_DATA(value, data) Ethrl::Json::Get(value, #data, data);
+
 namespace Ethrl {
 	struct Vector2;
 	struct Color;
