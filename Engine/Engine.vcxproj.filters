@@ -242,6 +242,9 @@
     <ClInclude Include="Serialization\Json.h">
       <Filter>Source Files\Serialization</Filter>
     </ClInclude>
+    <ClInclude Include="Serialization\ISerializable.h">
+      <Filter>Source Files\Serialization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt">

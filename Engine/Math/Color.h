@@ -1,6 +1,6 @@
 #pragma once
 #include <cstdint>
-#include <sstream>
+#include <iostream>
 #include <string>
 
 namespace Ethrl {
@@ -10,14 +10,16 @@ namespace Ethrl {
 		uint8_t B;
 		uint8_t A;
 
+		uint8_t operator [] (size_t Index) const { return (&R)[Index]; }
+		uint8_t& operator [] (size_t Index) { return (&R)[Index]; }
+
 		static const Color White;
 		static const Color Black;
 		static const Color Red;
 		static const Color Green;
 		static const Color Blue;
-
-		friend std::istream& operator >> (std::istream& stream, Color& color);
 	};
 
 	std::istream& operator >> (std::istream& stream, Color& color);
+	std::ostream& operator << (std::ostream& stream, const Color& color);
 }

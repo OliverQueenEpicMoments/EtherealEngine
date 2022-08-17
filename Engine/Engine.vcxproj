@@ -219,6 +219,7 @@
     <ClInclude Include="Resource\Resource.h" />
     <ClInclude Include="Resource\ResourceManager.h" />
     <ClInclude Include="Serialization\Json.h" />
+    <ClInclude Include="Serialization\ISerializable.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt" />

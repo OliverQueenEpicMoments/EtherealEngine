@@ -13,9 +13,8 @@ namespace Ethrl {
 		Vector2(int X, int Y) : X{ (float)X }, Y{ (float)Y } {};
 
 		void Set(float X, float Y) { this->X = X; this->Y = Y; }
-		float operator [] (size_t Index) const { return (&X)[Index]; }
-		float& operator [] (size_t Index) { return (&X)[Index]; }
-
+		float operator [] (size_t Index) const { return (&X) [Index]; }
+		float& operator [] (size_t Index) { return (&X) [Index]; }
 
 		// Arithmetic Operators
 		// V2 = V2 + V2
@@ -70,6 +69,7 @@ namespace Ethrl {
 	};
 
 	std::istream& operator >> (std::istream& stream, Vector2& V);
+	std::ostream& operator << (std::ostream& stream, const Vector2& V);
 
 	inline float Vector2::LengthSquared() { return X * X + Y * Y; }
 	inline float Vector2::Length() { return std::sqrt(X * X + Y * Y); }

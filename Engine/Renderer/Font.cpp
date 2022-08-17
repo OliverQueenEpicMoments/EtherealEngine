@@ -12,10 +12,19 @@ namespace Ethrl {
 	}
 
 	bool Font::Create(std::string FileName, ...) {
-		return false;
+		va_list args;
+		va_start(args, FileName);
+
+		int FontSize = va_arg(args, int);
+
+		va_end(args);
+
+		return Load(FileName, FontSize);
 	}
 
-	void Font::Load(const std::string& FileName, int FontSize) {
+	bool Font::Load(const std::string& FileName, int FontSize) {
 		m_tffFont = TTF_OpenFont(FileName.c_str(), FontSize);
+
+		return true;
 	}
 }

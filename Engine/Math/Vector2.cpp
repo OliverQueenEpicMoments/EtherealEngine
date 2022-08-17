@@ -12,11 +12,17 @@ namespace Ethrl {
 		std::string Line;
 		std::getline(stream, Line);
 
-		std::string XS = Line.substr(Line.find("{") + 1, Line.find(",") - Line.find("{") + 1);
+		std::string XS = Line.substr(Line.find("{") + 1, Line.find(",") - (Line.find("{") + 1));
 		V.X = std::stof(XS);
 
-		std::string YS = Line.substr(Line.find(",") + 1, Line.find("}") - Line.find(",") + 1);
+		std::string YS = Line.substr(Line.find(",") + 1, Line.find("}") - (Line.find(",") + 1));
 		V.Y = std::stof(YS);
+
+		return stream;
+	}
+
+	std::ostream& operator << (std::ostream& stream, const Vector2& V) {
+		stream << V.X << " " << V.Y;
 
 		return stream;
 	}

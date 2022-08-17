@@ -14,26 +14,29 @@ namespace Ethrl {
 		std::string Str;
 
 		// Red
-		Str = Line.substr(2, 1);
-		//Str = Line.substr(Line.find("{") + 1, Line.find(",") - 1);
-		float Red = std::stof(Str);
-		color.R = (uint8_t)(Red * 255);
+		Str = Line.substr(Line.find("{") + 1, Line.find(",") - (Line.find("{") + 1));
+		color.R = (uint8_t)(std::stof(Str) * 255);
+		std::cout << color.R;
 
 		Line = Line.substr(Line.find(",") + 1);
 
 		// Green 
-		Str = Line.substr();
-		float Green = std::stof(Str);
-		color.G = (uint8_t)(Green * 255);
-
-		Line = Line.substr(Line.find(",") + 1);
+		Str = Line.substr(0, Line.find(","));
+		color.G = (uint8_t)(std::stof(Str) * 255);
+		std::cout << color.G;
 
 		// Blue 
-		Str = Line.substr();
-		float Blue = std::stof(Str);
-		color.B = (uint8_t)(Blue * 255);
+		Str = Line.substr(Line.find(",") + 1, Line.find("}") - (Line.find(",") + 1));
+		color.B = (uint8_t)(std::stof(Str) * 255);
+		std::cout << color.B;
 
 		color.A = 255;
+
+		return stream;
+	}
+
+	std::ostream& operator << (std::ostream& stream, const Color& color) {
+		stream << (int)color.R << " " << (int)color.G << " " << (int)color.B << " " << (int)color.A;
 
 		return stream;
 	}
