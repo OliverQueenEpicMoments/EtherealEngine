@@ -12,6 +12,8 @@
 #include "Math/Random.h"
 #include "Math/Vector2.h"
 
+#include "Physics/PhysicsSystem.h"
+
 #include "FrameWork/Scene.h"
 #include "FrameWork/Game.h"
 #include "FrameWork/Actor.h"
@@ -20,6 +22,7 @@
 
 #include "Components/PlayerComponent.h"
 #include "Components/SpriteComponent.h"
+#include "Components/SpriteAnimComponent.h"
 #include "Components/ModelComponent.h"
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
@@ -42,6 +45,7 @@ namespace Ethrl {
 	extern Ehtrl::Time g_Time;
 	extern AudioSystem g_AudioSystem;
 	extern ResourceManager g_Resources;
+	extern PhysicsSystem g_PhysicsSystem;
 
 	class Engine : public Singleton<Engine> {
 	public:

@@ -6,6 +6,5 @@ namespace Ethrl {
 	class RenderComponent : public Component {
 	public:
 		virtual void Draw(Renderer& renderer) = 0;
-
 	};
 }

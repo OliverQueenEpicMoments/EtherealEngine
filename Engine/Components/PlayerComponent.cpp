@@ -22,7 +22,7 @@ namespace Ethrl {
 			Vector2 force = Vector2::Rotate({ 1, 0 }, Math::DegToRad(m_Owner->m_Transform.Rotation)) * Thrust;
 			component->ApplyForce(force);
 
-			// Gravitational Force
+			// Gravity Well
 			force = (Vector2{400, 300} - m_Owner->m_Transform.Position).Normalized() * 75;
 			component->ApplyForce(force);
 		} 

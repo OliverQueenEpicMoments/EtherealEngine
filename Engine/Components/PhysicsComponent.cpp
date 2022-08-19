@@ -18,6 +18,8 @@ namespace Ethrl {
 
 	bool PhysicsComponent::Read(const rapidjson::Value& value) {
 		READ_DATA(value, Damping);
+		READ_DATA(value, Velocity);
+		READ_DATA(value, Acceleration);
 
 		return true;
 	}

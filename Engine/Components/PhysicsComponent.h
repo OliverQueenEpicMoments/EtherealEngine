@@ -18,6 +18,6 @@ namespace Ethrl {
 		Vector2 Velocity;
 		Vector2 Acceleration;
 
-		float Damping = 1;
+		float Damping = 0.99f;
 	};
 }

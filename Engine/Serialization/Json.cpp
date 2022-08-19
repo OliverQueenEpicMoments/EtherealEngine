@@ -2,6 +2,7 @@
 #include "rapidjson/istreamwrapper.h"
 #include "Math/Vector2.h"
 #include "Math/Color.h"
+#include "Math/Rect.h"
 #include "Core/Logger.h"
 #include <fstream>
 
@@ -94,6 +95,23 @@ namespace Ethrl {
 				}
 				Data[I] = array[I].GetFloat();
 			}
+			return true;
+		}
+
+		// [0, 0, 32, 32]
+		bool Get(const rapidjson::Value& value, const std::string& Name, Rect& Data) {
+			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsArray() == false || value[Name.c_str()].Size() != 4) {
+				LOG("error reading json data %s", Name.c_str());
+				return false;
+			}
+
+			auto& array = value[Name.c_str()];
+
+			Data.X = array[0].GetInt();
+			Data.Y = array[1].GetInt();
+			Data.W = array[2].GetInt();
+			Data.H = array[3].GetInt();
+
 			return true;
 		}
 	}

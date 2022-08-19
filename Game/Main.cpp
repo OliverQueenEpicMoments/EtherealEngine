@@ -10,6 +10,7 @@ int main() {
 	Ethrl::g_InputSystem.Initialize();
 	Ethrl::g_AudioSystem.Initialize();
 	Ethrl::g_Resources.Initialize();
+	Ethrl::g_PhysicsSystem.initialize();
 
 	// Register
 	Ethrl::Engine::Instance().Register();
@@ -33,6 +34,7 @@ int main() {
 			Ethrl::g_Time.Tick();
 			Ethrl::g_InputSystem.Update();
 			Ethrl::g_AudioSystem.Update();
+			Ethrl::g_PhysicsSystem.Update();
 
 			//std::cout << Ethrl::g_Time.time << std::endl; // Time
 
@@ -49,7 +51,7 @@ int main() {
 
 			Ethrl::g_Renderer.EndFrame();
 		}
+		Ethrl::g_AudioSystem.Shutdown();
+		Ethrl::g_Renderer.Shutdown();
 	}
-	Ethrl::g_AudioSystem.Shutdown();
-	Ethrl::g_Renderer.Shutdown();
 }

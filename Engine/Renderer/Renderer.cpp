@@ -1,6 +1,7 @@
 #include "Renderer.h"
 #include "Math/MathUtils.h"
 #include "Math/Transform.h"
+#include "Math/Rect.h"
 
 #include <SDL.h>
 #include <SDL_ttf.h>
@@ -70,6 +71,30 @@ namespace Ethrl {
 		SDL_Point Center{ (int)Origin.X, (int)Origin.Y };
 
 		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, transform.Rotation, &Center, SDL_FLIP_NONE);
+	}
+
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration) {
+		Vector2 size = Vector2{ source.W, source.H };
+		size = size * transform.Scale;
+
+		Vector2 Origin = size * Registration;
+		Vector2 TPosition = transform.Position - (size * .5f);
+
+		SDL_Rect dest;
+		dest.x = (int)TPosition.X;
+		dest.y = (int)TPosition.Y;
+		dest.w = (int)size.X;
+		dest.h = (int)size.Y;
+
+		SDL_Rect src;
+		src.x = source.X;
+		src.y = source.Y;
+		src.w = source.W;
+		src.h = source.H;
+
+		SDL_Point Center{ (int)Origin.X, (int)Origin.Y };
+
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, &src, &dest, transform.Rotation, &Center, SDL_FLIP_NONE);
 	}
 
 	void Renderer::DrawLine(float X1, float Y1, float X2, float Y2) {

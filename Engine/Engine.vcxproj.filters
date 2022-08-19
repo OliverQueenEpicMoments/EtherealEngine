@@ -52,6 +52,9 @@
     <Filter Include="Source Files\Serialization">
       <UniqueIdentifier>{1340194d-f07c-4af6-a334-8a46ade0386b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Physics">
+      <UniqueIdentifier>{cebff125-7da9-405f-8ff9-f7005712b84e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Math\MathUtils.cpp">
@@ -134,6 +137,12 @@
     </ClCompile>
     <ClCompile Include="Math\Transform.cpp">
       <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\SpriteAnimComponent.cpp">
+      <Filter>Source Files\Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\PhysicsSystem.cpp">
+      <Filter>Source Files\Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +256,15 @@
     </ClInclude>
     <ClInclude Include="Serialization\ISerializable.h">
       <Filter>Source Files\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Rect.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\SpriteAnimComponent.h">
+      <Filter>Source Files\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics\PhysicsSystem.h">
+      <Filter>Source Files\Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

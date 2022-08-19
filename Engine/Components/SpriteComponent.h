@@ -1,5 +1,6 @@
 #pragma once
 #include "RenderComponent.h"
+#include "Math/Rect.h"
 
 namespace Ethrl {
 	class Texture;
@@ -12,6 +13,7 @@ namespace Ethrl {
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
+		Rect source;
 		std::shared_ptr<Texture> m_Texture;
 	};
 }
