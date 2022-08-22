@@ -12,6 +12,7 @@ namespace Ethrl {
 		Actor() = default;
 		Actor(const Transform& transform) : m_Transform{ transform } {}
 
+		virtual void Initialize() override;
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer);
 

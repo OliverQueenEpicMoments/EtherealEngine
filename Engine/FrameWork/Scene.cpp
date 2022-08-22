@@ -5,6 +5,10 @@
 #include <iostream>
 
 namespace Ethrl {
+	void Scene::Initialize() {
+		for (auto& actor : m_Actors) { actor->Initialize(); }
+	}
+
 	void Scene::Update() {
 		auto Iter = m_Actors.begin();
 		while (Iter != m_Actors.end()) {

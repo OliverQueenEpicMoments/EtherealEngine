@@ -9,7 +9,7 @@ namespace Ethrl {
 		PhysicsComponent() = default;
 		void Update() override;
 
-		void ApplyForce(const Vector2& Force) { Acceleration += Force; }
+		virtual void ApplyForce(const Vector2& Force) { Acceleration += Force; }
 
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;

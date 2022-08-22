@@ -3,14 +3,14 @@
 #include "Components/RenderComponent.h"
 
 namespace Ethrl {
-	void Actor::Update() {
-		for (auto &component : m_Components) {
-			component->Update();
-		}
+	void Actor::Initialize() {
+		for (auto& component : m_Components) { component->Initialize(); }
+		for (auto& child : m_Children) { child->Initialize(); }
+	}
 
-		for (auto& child : m_Children) {
-			child->Update();
-		}
+	void Actor::Update() {
+		for (auto &component : m_Components) { component->Update(); }
+		for (auto& child : m_Children) { child->Update(); }
 
 		if (m_Parent) m_Transform.Update(m_Parent->m_Transform.matrix);
 		else m_Transform.Update();

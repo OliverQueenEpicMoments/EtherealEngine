@@ -11,8 +11,6 @@ namespace Ethrl {
 	}
 
 	bool PhysicsComponent::Write(const rapidjson::Value& value) const {
-
-
 		return true;
 	}
 

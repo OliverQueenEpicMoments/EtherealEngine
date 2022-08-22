@@ -5,7 +5,7 @@ int main() {
 	Ethrl::InitializeMemory();
 	Ethrl::SetFilePath("../Assets");
 
-	// Initialize Engine
+	// Initialize Everything
 	Ethrl::g_Renderer.Initialize();
 	Ethrl::g_InputSystem.Initialize();
 	Ethrl::g_AudioSystem.Initialize();
@@ -18,7 +18,6 @@ int main() {
 	// Create Window
 	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600);
 	Ethrl::g_Renderer.SetClearColor(Ethrl::Color{ 100, 0, 0, 255 });
-
 	{
 		// Create Scene
  		Ethrl::Scene scene;
@@ -27,6 +26,7 @@ int main() {
 		bool success = Ethrl::Json::Load("Level.txt", document);
 
 		scene.Read(document);
+		scene.Initialize();
 
 		bool Quit = false;
 		while (!Quit) {
