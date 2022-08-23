@@ -26,6 +26,27 @@
       <Project>{c6c3b079-23ba-48f3-a463-28a0fafce8a5}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Build\Assets\Asteroid.txt" />
+    <Text Include="..\Build\Assets\Level.txt" />
+    <Text Include="..\Build\Assets\Models\Bullet.txt" />
+    <Text Include="..\Build\Assets\Models\Player.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="..\Build\Assets\Fonts\Blox2.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\Build\Assets\Images\Kirby.png" />
+    <Image Include="..\Build\Assets\Images\sf2.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\Build\Assets\Sounds\Explosion.wav" />
+    <Media Include="..\Build\Assets\Sounds\Explosion2.wav" />
+    <Media Include="..\Build\Assets\Sounds\Explosion3.wav" />
+    <Media Include="..\Build\Assets\Sounds\Laser.wav" />
+    <Media Include="..\Build\Assets\Sounds\Shooting.wav" />
+    <Media Include="..\Build\Assets\Sounds\Theme.mp3" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>

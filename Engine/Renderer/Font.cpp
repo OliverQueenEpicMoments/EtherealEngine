@@ -22,6 +22,12 @@ namespace Ethrl {
 		return Load(FileName, FontSize);
 	}
 
+	SDL_Surface* Font::CreateSurface(const std::string& Text, const Color& color) {
+		//SDL_Color c = color
+
+		return nullptr;
+	}
+
 	bool Font::Load(const std::string& FileName, int FontSize) {
 		m_tffFont = TTF_OpenFont(FileName.c_str(), FontSize);
 

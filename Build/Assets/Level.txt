@@ -2,6 +2,55 @@
    "actors":[
       {
          "type":"Actor",
+         "name":"Background",
+         "transform":{
+            "Position":[
+               400,
+               300
+            ],
+            "Scale":[
+               1,
+               1
+            ],
+            "Rotation":0
+         },
+         "components":[
+            {
+               "type":"SpriteComponent",
+               "SpriteName":"Images/background.png"
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Floor",
+         "transform":{
+            "Position":[
+               400,
+               540
+            ],
+            "Scale":[
+               1,
+               1
+            ],
+            "Rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "Data.IsDynamic":false
+            },
+            {
+               "type":"CollisionComponent",
+               "Data.Size":[
+                  800,
+                  24
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{
@@ -18,15 +67,20 @@
          "components":[
             {
                "type":"PlayerComponent",
-               "Speed":200
+               "Speed":20
             },
             {
-               "type":"ModelComponent",
-               "model_name":"Models/Player.txt"
+               "type":"RBPhysicsComponent",
+               "Damping":0.4,
+               "Data.GravityScale":1,
+               "Data.ConstrainAngle":true
             },
             {
-               "type":"PhysicsComponent",
-               "Damping":0.99
+               "type":"CollisionComponent",
+               "Data.Size":[
+                  48,
+                  48
+               ]
             },
             {
                "type":"SpriteAnimComponent",
@@ -36,6 +90,36 @@
                "num_rows":1,
                "start_frame":1,
                "end_frame":12
+            },
+            {
+               "type":"AudioComponent",
+               "SoundName":"Sounds/Explosion3.wav",
+               "PlayOnStart":true,
+               "Loop":false,
+               "Pitch":0.75
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Music",
+         "transform":{
+            "Position":[
+               400,
+               300
+            ],
+            "Scale":[
+               1,
+               1
+            ],
+            "Rotation":0
+         },
+         "components":[
+            {
+               "type":"AudioComponent",
+               "SoundName":"Sounds/CoolerTheme.mp3",
+               "PlayOnStart":true,
+               "Loop":false
             }
          ]
       }

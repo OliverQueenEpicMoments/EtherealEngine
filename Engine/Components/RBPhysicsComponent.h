@@ -15,6 +15,8 @@ namespace Ethrl {
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 		
+		friend class CollisionComponent;
+
 	private:
 		PhysicsSystem::RigidBodyData Data;
 		b2Body* m_Body = nullptr;

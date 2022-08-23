@@ -33,4 +33,20 @@ namespace Ethrl {
 	void PhysicsSystem::DestroyBody(b2Body* body) {
 		m_World->DestroyBody(body);
 	}
+
+	void PhysicsSystem::SetCollisionBox(b2Body* body, const CollisionData& data, Actor* actor) {
+		b2PolygonShape shape;
+		Vector2 worldSize = PhysicsSystem::ScreenToWorld(data.Size * 0.5f);
+		shape.SetAsBox(worldSize.X, worldSize.Y);
+
+		b2FixtureDef fixtureDef;
+		fixtureDef.density = data.Density;
+		fixtureDef.friction = data.Friction;
+		fixtureDef.restitution = data.Restitution;
+		fixtureDef.isSensor = data.IsTrigger;
+		fixtureDef.shape = &shape;
+		fixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(actor);
+
+		body->CreateFixture(&fixtureDef);
+	}
 }

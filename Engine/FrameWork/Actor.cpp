@@ -37,7 +37,7 @@ namespace Ethrl {
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 
-		m_Transform.Read(value["transform"]);
+		if (value.HasMember("transform")) m_Transform.Read(value["transform"]);
 
 		if (value.HasMember("components") && value["components"].IsArray()) {
 			for (auto& componentvalue : value["components"].GetArray()) {

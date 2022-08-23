@@ -12,9 +12,11 @@ namespace Ethrl {
 		REGISTER_CLASS(Actor);
 		REGISTER_CLASS(AudioComponent);
 		REGISTER_CLASS(PhysicsComponent);
+		REGISTER_CLASS(RBPhysicsComponent);
 		REGISTER_CLASS(PlayerComponent);
 		REGISTER_CLASS(ModelComponent);
 		REGISTER_CLASS(SpriteComponent);
 		REGISTER_CLASS(SpriteAnimComponent);
+		REGISTER_CLASS(CollisionComponent);
 	}
 }

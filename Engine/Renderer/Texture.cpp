@@ -40,6 +40,20 @@ namespace Ethrl {
 		return true;
 	}
 
+	bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer) {
+		if (m_Texture) SDL_DestroyTexture(m_Texture);
+
+		m_Texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+
+		SDL_FreeSurface(surface);
+
+		if (m_Texture = nullptr) {
+			LOG(SDL_GetError());
+			return false;
+		}
+		return true;
+	}
+
 	Vector2 Texture::GetSize() const {
 		SDL_Point point;
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &point.x, &point.y);

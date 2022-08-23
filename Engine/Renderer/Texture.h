@@ -4,6 +4,7 @@
 #include <string>
 
 struct SDL_Texture;
+struct SDL_Surface;
 
 namespace Ethrl {
 	class Renderer;
@@ -16,6 +17,7 @@ namespace Ethrl {
 
 		bool Create(std::string FileName, ...) override;
 		bool Create(Renderer& renderer, const std::string& FileName);
+		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
 
 		Vector2 GetSize() const;
 
