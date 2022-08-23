@@ -1,5 +1,6 @@
 #include "Font.h"
 #include <SDL_ttf.h>
+#include <Core/Logger.h>
 
 namespace Ethrl {
 	Font::Font(const std::string& FileName, int FontSize) {
@@ -23,9 +24,13 @@ namespace Ethrl {
 	}
 
 	SDL_Surface* Font::CreateSurface(const std::string& Text, const Color& color) {
-		//SDL_Color c = color
+		&color;
 
-		return nullptr;
+		SDL_Color c = { 0, 0, 0, 255 };
+		SDL_Surface* surface = TTF_RenderText_Solid(m_tffFont, Text.c_str(), c);
+
+		if (surface == nullptr) LOG(SDL_GetError());
+		return surface;
 	}
 
 	bool Font::Load(const std::string& FileName, int FontSize) {

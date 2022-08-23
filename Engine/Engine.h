@@ -28,6 +28,7 @@
 #include "Components/AudioComponent.h"
 #include "Components/PhysicsComponent.h"
 #include "Components/RBPhysicsComponent.h"
+#include "Components/TextComponent.h"
 
 #include "Serialization/Json.h"
 

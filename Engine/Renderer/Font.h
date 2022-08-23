@@ -4,11 +4,11 @@
 
 struct _TTF_Font;
 struct SDL_Surface;
-struct Color;
+struct SDL_Color;
 
 namespace Ethrl {
+	struct Color;
 	class Font : public Resource {
-
 	public:
 		Font() = default;
 		Font(const std::string& FileName, int FontSize);
