@@ -8,6 +8,7 @@ struct SDL_Color;
 
 namespace Ethrl {
 	struct Color;
+
 	class Font : public Resource {
 	public:
 		Font() = default;

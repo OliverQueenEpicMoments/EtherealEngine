@@ -24,9 +24,7 @@ namespace Ethrl {
 	}
 
 	SDL_Surface* Font::CreateSurface(const std::string& Text, const Color& color) {
-		&color;
-
-		SDL_Color c = { 0, 0, 0, 255 };
+		SDL_Color c = *((SDL_Color*)(&color));
 		SDL_Surface* surface = TTF_RenderText_Solid(m_tffFont, Text.c_str(), c);
 
 		if (surface == nullptr) LOG(SDL_GetError());
