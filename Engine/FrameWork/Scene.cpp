@@ -70,4 +70,8 @@ namespace Ethrl {
 		actor->m_Scene = this;
 		m_Actors.push_back(std::move(actor));
 	}
+
+	void Scene::RemoveAll() {
+		m_Actors.clear();
+	}
 }

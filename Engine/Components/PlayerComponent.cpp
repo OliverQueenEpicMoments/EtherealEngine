@@ -5,6 +5,14 @@
 #include <Components/PhysicsComponent.h>
 
 namespace Ethrl {
+	void PlayerComponent::Initialize() {
+		auto component = m_Owner->GetComponent<CollisionComponent>();
+		if (component) {
+			component->SetCollisionEnter(std::bind(&PlayerComponent::OnCollisionEnter, this, std::placeholders::_1));
+			component->SetCollisionExit(std::bind(&PlayerComponent::OnCollisionExit, this, std::placeholders::_1));
+		}
+	}
+
 	void PlayerComponent::Update() {
 		Vector2 Direction = Vector2::Zero;
 
@@ -38,6 +46,14 @@ namespace Ethrl {
 		if (component) {
 			component->ApplyForce(Direction * Speed);
 		} 
+	}
+
+	void PlayerComponent::OnCollisionEnter(Actor* other) {
+		std::cout << "Player Enter" << std::endl;
+	}
+
+	void PlayerComponent::OnCollisionExit(Actor* other) {
+		std::cout << "Player Exit" << std::endl;
 	}
 
 	bool PlayerComponent::Write(const rapidjson::Value& value) const {

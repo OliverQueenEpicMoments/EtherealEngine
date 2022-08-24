@@ -7,6 +7,8 @@ namespace Ethrl {
 	void PhysicsSystem::initialize() {
 		b2Vec2 Gravity{ 0, 10 };
 		m_World = std::make_unique<b2World>(Gravity);
+		m_ContactListener = std::make_unique<ContactListener>();
+		m_World->SetContactListener(m_ContactListener.get());
 	}
 
 	void PhysicsSystem::Shutdown() {

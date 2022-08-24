@@ -3,7 +3,7 @@
 
 namespace Ethrl {
 	AudioComponent::~AudioComponent() {
-		m_Channel.Stop();
+		Stop();
 	}
 
 	void AudioComponent::Initialize() {
@@ -17,7 +17,7 @@ namespace Ethrl {
 	}
 
 	void AudioComponent::Play() {
-		Stop();
+		m_Channel.Stop();
 		m_Channel = g_AudioSystem.PlayAudio(SoundName, Volume, Pitch, Loop);
 	}
 

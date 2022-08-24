@@ -20,7 +20,7 @@ namespace Ethrl {
 
 		va_end(args);
 
-		return Load(FileName, FontSize);
+		return Load(FileName, FontSize); //TODO
 	}
 
 	SDL_Surface* Font::CreateSurface(const std::string& Text, const Color& color) {

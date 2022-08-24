@@ -51,6 +51,8 @@ int main() {
 
 			Ethrl::g_Renderer.EndFrame();
 		}
+		scene.RemoveAll();
+
 		Ethrl::g_PhysicsSystem.Shutdown();
 		Ethrl::g_AudioSystem.Shutdown();
 		Ethrl::g_Renderer.Shutdown();

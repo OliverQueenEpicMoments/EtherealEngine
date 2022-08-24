@@ -1,5 +1,6 @@
 #include "CollisionComponent.h"
 #include "Engine.h"
+#include <iostream>
 
 namespace Ethrl {
     void CollisionComponent::Initialize() {
@@ -14,11 +15,11 @@ namespace Ethrl {
     }
 
     void CollisionComponent::OnCollisionEnter(Actor* other) {
-
+        if (m_EnterFunction) m_EnterFunction(other);
     }
 
     void CollisionComponent::OnCollisionExit(Actor* other) {
-
+        if (m_EnterFunction) m_ExitFunction(other);
     }
 
     bool CollisionComponent::Write(const rapidjson::Value& value) const {
