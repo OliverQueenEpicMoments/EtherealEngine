@@ -4,7 +4,7 @@
 
 struct _TTF_Font;
 struct SDL_Surface;
-struct SDL_Color;
+struct
 
 namespace Ethrl {
 	struct Color;
