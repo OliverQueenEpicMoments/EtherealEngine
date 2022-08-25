@@ -6,6 +6,8 @@ namespace Ethrl {
 	class Texture;
 	class SpriteAnimComponent : public RenderComponent {
 	public:
+		CLASS_DECLARATION(SpriteAnimComponent)
+
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 

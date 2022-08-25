@@ -1,5 +1,4 @@
 #pragma once
-
 #include "RenderComponent.h"
 #include "Math/Color.h"
 #include "Math/Vector2.h"
@@ -10,6 +9,8 @@ namespace Ethrl {
 	class Texture;
 	class TextComponent : public RenderComponent {
 	public:
+
+		CLASS_DECLARATION(TextComponent)
 		virtual void Update() override;
 		virtual void Draw(Renderer& renderer) override;
 

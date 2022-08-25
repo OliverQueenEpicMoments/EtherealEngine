@@ -23,6 +23,39 @@
       },
       {
          "type":"Actor",
+         "name":"Text",
+         "transform":{
+            "Position":[
+               60,
+               45
+            ],
+            "Scale":[
+               2,
+               2
+            ],
+            "Rotation":0
+         },
+         "components":[
+            {
+               "type":"TextComponent",
+               "Text":"Hello World!",
+               "FontName":"Fonts/PhoenixOne.ttf",
+               "FontSize":32,
+               "Registration":[
+                  0.5,
+                  0.5
+               ],
+               "color":[
+                  255,
+                  255,
+                  0,
+                  255
+               ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
          "name":"Floor",
          "transform":{
             "Position":[
@@ -46,6 +79,48 @@
                   800,
                   24
                ]
+            }
+         ]
+      },
+      {
+         "type":"Actor",
+         "name":"Coin",
+         "tag":"Pickup",
+         "prefab":true,
+         "transform":{
+            "Position":[
+               600,
+               200
+            ],
+            "Scale":[
+               1,
+               1
+            ],
+            "Rotation":0
+         },
+         "components":[
+            {
+               "type":"RBPhysicsComponent",
+               "Damping":0.4,
+               "Data.GravityScale":1,
+               "Data.ConstrainAngle":false
+            },
+            {
+               "type":"CollisionComponent",
+               "Data.Size":[
+                  48,
+                  48
+               ],
+               "Data.Restitution":0.7
+            },
+            {
+               "type":"SpriteAnimComponent",
+               "SpriteName":"Images/Coin.png",
+               "fps":12,
+               "num_columns":8,
+               "num_rows":1,
+               "start_frame":1,
+               "end_frame":8
             }
          ]
       },
@@ -109,39 +184,6 @@
                "SoundName":"Sounds/CoolerTheme.mp3",
                "PlayOnStart":true,
                "Loop":true
-            }
-         ]
-      },
-      {
-         "type":"Actor",
-         "name":"Text",
-         "transform":{
-            "Position":[
-               40,
-               30
-            ],
-            "Scale":[
-               1,
-               1
-            ],
-            "Rotation":0
-         },
-         "components":[
-            {
-               "type":"TextComponent",
-               "Text":"Hello World!",
-               "FontName":"Fonts/Blox.ttf",
-               "FontSize":16,
-               "Registration":[
-                  0.0,
-                  0.5
-               ],
-               "color":[
-                  255,
-                  255,
-                  0,
-                  255
-               ]
             }
          ]
       }

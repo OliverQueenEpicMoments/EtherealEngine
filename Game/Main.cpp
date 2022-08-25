@@ -28,6 +28,14 @@ int main() {
 		scene.Read(document);
 		scene.Initialize();
 
+		for (int i = 0; i < 10; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
+			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f};
+			actor->Initialize();
+
+			scene.Add(std::move(actor));
+		}
+
 		bool Quit = false;
 		while (!Quit) {
 			// Update

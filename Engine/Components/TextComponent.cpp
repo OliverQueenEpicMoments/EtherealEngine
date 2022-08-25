@@ -11,7 +11,8 @@ namespace Ethrl {
     }
 
     void TextComponent::SetText(const std::string& text) {
-        m_Texture->CreateFromSurface(m_Font->CreateSurface(text, color), g_Renderer);
+        SDL_Surface* surface = m_Font->CreateSurface(text, color);
+        m_Texture->CreateFromSurface(surface, g_Renderer);
     }
 
     bool TextComponent::Write(const rapidjson::Value& value) const {

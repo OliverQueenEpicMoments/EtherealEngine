@@ -13,6 +13,8 @@ namespace Ethrl {
 		virtual void Initialize() override;
 		virtual void Update() override;
 
+		CLASS_DECLARATION(CollisionComponent)
+
 		virtual void OnCollisionEnter(Actor* other) override;
 		virtual void OnCollisionExit(Actor* other) override;
 

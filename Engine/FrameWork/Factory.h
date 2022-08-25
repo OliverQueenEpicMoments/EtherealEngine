@@ -13,15 +13,30 @@ namespace Ethrl {
 
 	template <typename T>
 	class Creator : public CreatorBase {
+	public:
 		std::unique_ptr<GameObject> Create() override {
 			return std::make_unique<T>();
 		}
+	};
+
+	template <typename T>
+	class PrefabCreator : public CreatorBase {
+	public:
+		PrefabCreator(std::unique_ptr<T> Instance) : m_Instance{ std::move(Instance) } {}
+		std::unique_ptr<GameObject> Create() override {
+			return m_Instance->Clone(); //TODO
+		}
+	private:
+		std::unique_ptr<T> m_Instance;
 	};
 
 	class Factory : public Singleton<Factory> {
 	public:
 		template <typename T>
 		void Register(const std::string& Key);
+
+		template <typename T>
+		void RegisterPrefab(const std::string& Key, std::unique_ptr<T> Instance);
 
 		template <typename T>
 		std::unique_ptr<T> Create(const std::string& Key);
@@ -32,6 +47,11 @@ namespace Ethrl {
 	template<typename T>
 	inline void Factory::Register(const std::string& Key) {
 		m_Registry[Key] = std::make_unique<Creator<T>>();
+	}
+
+	template<typename T>
+	inline void Factory::RegisterPrefab(const std::string& Key, std::unique_ptr<T> Instance) {
+		m_Registry[Key] = std::make_unique<PrefabCreator<T>>(std::move(Instance));
 	}
 
 	template<typename T>

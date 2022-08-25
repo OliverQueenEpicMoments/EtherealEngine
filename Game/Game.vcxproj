@@ -34,8 +34,12 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Build\Assets\Fonts\Blox2.ttf" />
+    <Font Include="..\Build\Assets\Fonts\PhoenixOne.ttf" />
+    <Font Include="..\Build\Assets\Fonts\PhoenixTwo.ttf" />
+    <Font Include="..\Build\Assets\Fonts\Royal Inferno.ttf" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Build\Assets\Images\Coin.png" />
     <Image Include="..\Build\Assets\Images\Kirby.png" />
     <Image Include="..\Build\Assets\Images\sf2.bmp" />
   </ItemGroup>

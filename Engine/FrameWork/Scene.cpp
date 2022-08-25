@@ -19,21 +19,6 @@ namespace Ethrl {
 				Iter++;
 			}
 		}
-
-		// Check Collision
-		for (auto Iter1 = m_Actors.begin(); Iter1 != m_Actors.end(); Iter1++) {
-			for (auto Iter2 = m_Actors.begin(); Iter2 != m_Actors.end(); Iter2++) {
-				if (Iter1 == Iter2) continue;
-
-				float Radius = (* Iter1)->GetRadius() + (*Iter2)->GetRadius();
-				float Distance = (*Iter1)->m_Transform.Position.Distance((*Iter2)->m_Transform.Position);
-
-				if (Distance < Radius) {
-					(*Iter1)->OnCollision((*Iter2).get());
-					(*Iter2)->OnCollision((*Iter1).get());
-				}
-			}
-		}
 	}
 
 	void Scene::Draw(Renderer& renderer) {
@@ -60,7 +45,19 @@ namespace Ethrl {
 			if (actor) {
 				// Read Actor
 				actor->Read(actorvalue);
-				Add(std::move(actor));
+
+				bool prefab = false;
+				READ_DATA(actorvalue, prefab);
+
+				if (prefab) {
+					std::string Name = actor->GetName();
+					Factory::Instance().RegisterPrefab(Name, std::move(actor));
+				}
+				else {
+					Add(std::move(actor));
+				}
+
+				
 			}
 		}
 		return true;

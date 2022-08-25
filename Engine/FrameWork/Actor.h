@@ -10,7 +10,10 @@ namespace Ethrl {
 	class Actor : public GameObject, public ISerializable {
 	public:
 		Actor() = default;
+		Actor(const Actor& other);
 		Actor(const Transform& transform) : m_Transform{ transform } {}
+
+		CLASS_DECLARATION(Actor)
 
 		virtual void Initialize() override;
 		virtual void Update() override;
@@ -47,10 +50,6 @@ namespace Ethrl {
 		std::string tag;
 
 		bool m_Destroy = false;
-
-		// Physics
-		Vector2 m_Velocity;
-		float m_Damping = 1.0f;
 
 		Scene* m_Scene = nullptr;
 		Actor* m_Parent = nullptr;

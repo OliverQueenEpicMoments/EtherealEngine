@@ -3,6 +3,18 @@
 #include "Components/RenderComponent.h"
 
 namespace Ethrl {
+	Actor::Actor(const Actor& other) {
+		name = other.name;
+		tag = other.tag;
+
+		m_Scene = other.m_Scene;
+
+		for (auto& component : other.m_Components) {
+			auto clone = std::unique_ptr<Component>((Component*)component->Clone().release());
+			AddComponent(std::move(clone));
+		}
+	}
+
 	void Actor::Initialize() {
 		for (auto& component : m_Components) { component->Initialize(); }
 		for (auto& child : m_Children) { child->Initialize(); }

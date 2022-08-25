@@ -49,12 +49,24 @@
     <Font Include="..\Build\Assets\Fonts\Blox2.ttf">
       <Filter>Resource Files\Fonts</Filter>
     </Font>
+    <Font Include="..\Build\Assets\Fonts\PhoenixOne.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
+    <Font Include="..\Build\Assets\Fonts\PhoenixTwo.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
+    <Font Include="..\Build\Assets\Fonts\Royal Inferno.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Build\Assets\Images\Kirby.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Build\Assets\Images\sf2.bmp">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Build\Assets\Images\Coin.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>

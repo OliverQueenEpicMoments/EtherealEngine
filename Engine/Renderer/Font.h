@@ -4,7 +4,7 @@
 
 struct _TTF_Font;
 struct SDL_Surface;
-struct
+struct SDL_Color;
 
 namespace Ethrl {
 	struct Color;
@@ -17,6 +17,7 @@ namespace Ethrl {
 
 		bool Create(std::string FileName, ...) override;
 		SDL_Surface* CreateSurface(const std::string& Text, const Color& color);
+
 		bool Load(const std::string& FileName, int FontSize);
 
 		friend class Text;
