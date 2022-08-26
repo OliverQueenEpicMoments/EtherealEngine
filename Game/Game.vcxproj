@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="TheGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Engine\Engine.vcxproj">
@@ -28,9 +29,11 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\Build\Assets\Asteroid.txt" />
-    <Text Include="..\Build\Assets\Level.txt" />
     <Text Include="..\Build\Assets\Models\Bullet.txt" />
     <Text Include="..\Build\Assets\Models\Player.txt" />
+    <Text Include="..\Build\Assets\Scenes\Level.txt" />
+    <Text Include="..\Build\Assets\Scenes\Prefabs.txt" />
+    <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Build\Assets\Fonts\Blox2.ttf" />
@@ -42,6 +45,8 @@
     <Image Include="..\Build\Assets\Images\Coin.png" />
     <Image Include="..\Build\Assets\Images\Kirby.png" />
     <Image Include="..\Build\Assets\Images\sf2.bmp" />
+    <Image Include="..\Build\Assets\Images\Tilemap.png" />
+    <Image Include="..\Build\Assets\Images\Tilemap2.png" />
   </ItemGroup>
   <ItemGroup>
     <Media Include="..\Build\Assets\Sounds\Explosion.wav" />
@@ -50,6 +55,9 @@
     <Media Include="..\Build\Assets\Sounds\Laser.wav" />
     <Media Include="..\Build\Assets\Sounds\Shooting.wav" />
     <Media Include="..\Build\Assets\Sounds\Theme.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="TheGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

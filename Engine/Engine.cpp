@@ -19,5 +19,6 @@ namespace Ethrl {
 		REGISTER_CLASS(SpriteAnimComponent);
 		REGISTER_CLASS(CollisionComponent);
 		REGISTER_CLASS(TextComponent);
+		REGISTER_CLASS(TilemapComponent);
 	}
 }

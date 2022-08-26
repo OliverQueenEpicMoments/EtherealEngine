@@ -84,48 +84,6 @@
       },
       {
          "type":"Actor",
-         "name":"Coin",
-         "tag":"Pickup",
-         "prefab":true,
-         "transform":{
-            "Position":[
-               600,
-               200
-            ],
-            "Scale":[
-               1,
-               1
-            ],
-            "Rotation":0
-         },
-         "components":[
-            {
-               "type":"RBPhysicsComponent",
-               "Damping":0.4,
-               "Data.GravityScale":1,
-               "Data.ConstrainAngle":false
-            },
-            {
-               "type":"CollisionComponent",
-               "Data.Size":[
-                  48,
-                  48
-               ],
-               "Data.Restitution":0.7
-            },
-            {
-               "type":"SpriteAnimComponent",
-               "SpriteName":"Images/Coin.png",
-               "fps":12,
-               "num_columns":8,
-               "num_rows":1,
-               "start_frame":1,
-               "end_frame":8
-            }
-         ]
-      },
-      {
-         "type":"Actor",
          "name":"Player",
          "tag":"Player",
          "transform":{

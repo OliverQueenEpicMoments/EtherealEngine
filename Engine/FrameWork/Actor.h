@@ -40,6 +40,13 @@ namespace Ethrl {
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 
+		void SetDestroy() { m_Destroy = true; }
+
+		void SetActive(bool active = true) { m_Active = active; }
+		bool IsActive() { return m_Active; }
+
+		Scene* GetScene() { return m_Scene; }
+
 		friend class Scene;
 		friend class Component;
 
@@ -49,6 +56,7 @@ namespace Ethrl {
 		std::string name;
 		std::string tag;
 
+		bool m_Active = true;
 		bool m_Destroy = false;
 
 		Scene* m_Scene = nullptr;

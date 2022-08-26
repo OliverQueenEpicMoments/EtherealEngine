@@ -114,5 +114,43 @@ namespace Ethrl {
 
 			return true;
 		}
+
+		bool Get(const rapidjson::Value& value, const std::string& Name, std::vector<std::string>& Data) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsArray()) {
+				LOG("error reading json data %s", Name.c_str());
+				return false;
+			}
+
+			auto& array = value[Name.c_str()];
+			for (rapidjson::SizeType I = 0; I < array.Size(); I++) {
+				if (!array[I].IsString()) {
+					LOG("error reading json data (not a string) %s", Name.c_str());
+					return false;
+				}
+				Data.push_back(array[I].GetString());
+			}
+			return true;
+		}
+
+		bool Get(const rapidjson::Value& value, const std::string& Name, std::vector<int>& Data) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsInt()) {
+				LOG("error reading json data %s", Name.c_str());
+				return false;
+			}
+
+			auto& array = value[Name.c_str()];
+			for (rapidjson::SizeType I = 0; I < array.Size(); I++) {
+				if (!array[I].IsInt()) {
+					LOG("error reading json data (not a string) %s", Name.c_str());
+					return false;
+				}
+				Data.push_back(array[I].GetInt());
+			}
+			return true;
+		}
 	}
 }

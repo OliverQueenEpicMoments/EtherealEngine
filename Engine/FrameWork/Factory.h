@@ -1,5 +1,6 @@
 #pragma once
 #include "Singleton.h"
+#include "Core/Logger.h"
 #include <memory>
 #include <map>
 #include <string>
@@ -8,6 +9,8 @@ namespace Ethrl {
 	class GameObject;
 	class CreatorBase {
 	public:
+		virtual ~CreatorBase() = default;
+
 		virtual std::unique_ptr<GameObject> Create() = 0;
 	};
 
@@ -22,16 +25,21 @@ namespace Ethrl {
 	template <typename T>
 	class PrefabCreator : public CreatorBase {
 	public:
+		~PrefabCreator() = default;
+
 		PrefabCreator(std::unique_ptr<T> Instance) : m_Instance{ std::move(Instance) } {}
 		std::unique_ptr<GameObject> Create() override {
 			return m_Instance->Clone(); //TODO
 		}
+
 	private:
 		std::unique_ptr<T> m_Instance;
 	};
 
 	class Factory : public Singleton<Factory> {
 	public:
+		void Shutdown() { m_Registry.clear(); }
+
 		template <typename T>
 		void Register(const std::string& Key);
 
@@ -60,6 +68,8 @@ namespace Ethrl {
 		if (Iter != m_Registry.end()) {
 			return std::unique_ptr<T>(dynamic_cast<T*>(Iter->second->Create().release()));
 		}
+
+		LOG("Error could not find key %s", Key.c_str());
 
 		return std::unique_ptr<T>();
 	}

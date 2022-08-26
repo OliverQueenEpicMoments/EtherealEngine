@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "TheGame.h"
 #include <iostream>
 
 int main() {
@@ -18,51 +19,41 @@ int main() {
 	// Create Window
 	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600);
 	Ethrl::g_Renderer.SetClearColor(Ethrl::Color{ 100, 0, 0, 255 });
-	{
-		// Create Scene
- 		Ethrl::Scene scene;
+	
+	// Create Game
+	std::unique_ptr<TheGame> game = std::make_unique<TheGame>();
+	game->Initialize();
 
-		rapidjson::Document document;
-		bool success = Ethrl::Json::Load("Level.txt", document);
+	bool Quit = false;
+	while (!Quit) {
+		// Update
+		Ethrl::g_Time.Tick();
+		Ethrl::g_InputSystem.Update();
+		Ethrl::g_AudioSystem.Update();
+		Ethrl::g_PhysicsSystem.Update();
 
-		scene.Read(document);
-		scene.Initialize();
+		//std::cout << Ethrl::g_Time.time << std::endl; // Time
 
-		for (int i = 0; i < 10; i++) {
-			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
-			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f};
-			actor->Initialize();
+		// Quit
+		if (Ethrl::g_InputSystem.GetKeyState(Ethrl::Key_Escape) == Ethrl::InputSystem::State::Pressed) Quit = true;
 
-			scene.Add(std::move(actor));
-		}
+		// Update Scene
+		game->Update();
 
-		bool Quit = false;
-		while (!Quit) {
-			// Update
-			Ethrl::g_Time.Tick();
-			Ethrl::g_InputSystem.Update();
-			Ethrl::g_AudioSystem.Update();
-			Ethrl::g_PhysicsSystem.Update();
+		// Render
+		Ethrl::g_Renderer.BeginFrame();
 
-			//std::cout << Ethrl::g_Time.time << std::endl; // Time
+		game->Draw(Ethrl::g_Renderer);
 
-			// Quit
-			if (Ethrl::g_InputSystem.GetKeyState(Ethrl::Key_Escape) == Ethrl::InputSystem::State::Pressed) Quit = true;
-
-			// Update Scene
-			scene.Update();
-
-			// Render
-			Ethrl::g_Renderer.BeginFrame();
-
-			scene.Draw(Ethrl::g_Renderer); 
-
-			Ethrl::g_Renderer.EndFrame();
-		}
-		scene.RemoveAll();
-
-		Ethrl::g_PhysicsSystem.Shutdown();
-		Ethrl::g_AudioSystem.Shutdown();
-		Ethrl::g_Renderer.Shutdown();
+		Ethrl::g_Renderer.EndFrame();
 	}
+
+	game->Shutdown();
+	game.reset();
+
+	Ethrl::Factory::Instance().Shutdown();
+
+	Ethrl::g_PhysicsSystem.Shutdown();
+	Ethrl::g_AudioSystem.Shutdown();
+	Ethrl::g_Renderer.Shutdown();	
 }

@@ -29,12 +29,14 @@
 #include "Components/PhysicsComponent.h"
 #include "Components/RBPhysicsComponent.h"
 #include "Components/TextComponent.h"
+#include "Components/TilemapComponent.h"
 
 #include "Serialization/Json.h"
 
 #include "Core/Memory.h"
 #include "Core/File.h"
 #include "Core/Time.h"
+#include "Core/Logger.h"
 
 #include "Audio/AudioSystem.h"
 #include "Resource/ResourceManager.h"

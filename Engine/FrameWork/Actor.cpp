@@ -6,6 +6,7 @@ namespace Ethrl {
 	Actor::Actor(const Actor& other) {
 		name = other.name;
 		tag = other.tag;
+		m_Transform = other.m_Transform;
 
 		m_Scene = other.m_Scene;
 
@@ -21,6 +22,8 @@ namespace Ethrl {
 	}
 
 	void Actor::Update() {
+		if (!m_Active) return;
+
 		for (auto &component : m_Components) { component->Update(); }
 		for (auto& child : m_Children) { child->Update(); }
 
@@ -29,6 +32,8 @@ namespace Ethrl {
 	}
 
 	void Actor::Draw(Renderer& renderer) {
+		if (!m_Active) return;
+
 		for (auto& component : m_Components) {
 			auto rendercomponent = dynamic_cast<RenderComponent*> (component.get());
 			if (rendercomponent) {
@@ -48,6 +53,7 @@ namespace Ethrl {
 	bool Actor::Read(const rapidjson::Value& value) {
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
+		READ_DATA(value, m_Active);
 
 		if (value.HasMember("transform")) m_Transform.Read(value["transform"]);
 

@@ -49,7 +49,7 @@ namespace Ethrl {
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other) {
-		std::cout << "Player Enter" << std::endl;
+		std::cout << "Player Enter" << std::endl; // 15/16 minutes
 	}
 
 	void PlayerComponent::OnCollisionExit(Actor* other) {

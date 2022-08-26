@@ -1,0 +1,105 @@
+{
+	"actors":[
+		{
+			"type":"Actor",
+			"name":"Tile1",
+			"tag":"Ground",
+			"prefab":true,
+			"transform":{
+				"Scale":[
+					2,
+					2
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"SpriteName":"Images/Tilemap.png",
+					"source":[
+						96,
+						416,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RBPhysicsComponent",
+					"Data.IsDynamic":false
+				},
+				{
+					"type":"CollisionComponent",
+					"Data.Size":[
+						64,
+						64
+					]
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"Tile2",
+			"tag":"Ground",
+			"prefab":true,
+			"transform":{
+				"Scale":[
+					2,
+					2
+				]
+			},
+			"components":[
+				{
+					"type":"SpriteComponent",
+					"SpriteName":"Images/Tilemap.png",
+					"source":[
+						0,
+						128,
+						32,
+						32
+					]
+				},
+				{
+					"type":"RBPhysicsComponent",
+					"Data.IsDynamic":false
+				},
+				{
+					"type":"CollisionComponent",
+					"Data.Size":[
+						64,
+						64
+					]
+				}
+			]
+		},
+		{
+			"type":"Actor",
+			"name":"World",
+			"transform":{
+				"Position":[
+					32,
+					32
+				]
+			},
+			"components":[
+				{
+					"type":"TilemapComponent",
+					"ColumnNum": 13,
+					"RowNum": 10,
+					"Size": [64, 64],
+					"TileNames": ["", "Tile1", "Tile2"],
+					"Tiles": [
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							0, 0, 0, 0, 0, 2, 2, 2, 0, 0, 0, 0, 0,
+							2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2,
+							0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+							1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+							]
+				}    
+			]
+		}
+	]
+}
