@@ -49,6 +49,8 @@ namespace Ethrl {
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other) {
+		if (other->GetName() == "Coin") other->SetDestroy();
+
 		std::cout << "Player Enter" << std::endl; // 15/16 minutes
 	}
 

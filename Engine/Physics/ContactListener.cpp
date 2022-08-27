@@ -8,7 +8,7 @@ namespace Ethrl {
 		b2Fixture* FixtureA = Contact->GetFixtureA();
 		b2Fixture* FixtureB = Contact->GetFixtureB();
 
-		if (FixtureA->GetUserData().pointer || FixtureB->GetUserData().pointer) {
+		if (FixtureA->GetUserData().pointer && FixtureB->GetUserData().pointer) {
 			Actor* actorA = (Actor*)(FixtureA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(FixtureB->GetUserData().pointer);
 
@@ -26,7 +26,7 @@ namespace Ethrl {
 		b2Fixture* FixtureA = Contact->GetFixtureA();
 		b2Fixture* FixtureB = Contact->GetFixtureB();
 
-		if (FixtureA->GetUserData().pointer || FixtureB->GetUserData().pointer) {
+		if (FixtureA->GetUserData().pointer && FixtureB->GetUserData().pointer) {
 			Actor* actorA = (Actor*)(FixtureA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(FixtureB->GetUserData().pointer);
 

@@ -137,7 +137,7 @@ namespace Ethrl {
 		bool Get(const rapidjson::Value& value, const std::string& Name, std::vector<int>& Data) {
 			if (!value.HasMember(Name.c_str())) return false;
 
-			if (!value[Name.c_str()].IsInt()) {
+			if (!value[Name.c_str()].IsArray()) {
 				LOG("error reading json data %s", Name.c_str());
 				return false;
 			}
@@ -145,7 +145,7 @@ namespace Ethrl {
 			auto& array = value[Name.c_str()];
 			for (rapidjson::SizeType I = 0; I < array.Size(); I++) {
 				if (!array[I].IsInt()) {
-					LOG("error reading json data (not a string) %s", Name.c_str());
+					LOG("error reading json data (not an int) %s", Name.c_str());
 					return false;
 				}
 				Data.push_back(array[I].GetInt());

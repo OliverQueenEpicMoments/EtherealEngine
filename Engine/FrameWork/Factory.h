@@ -3,7 +3,6 @@
 #include "Core/Logger.h"
 #include <memory>
 #include <map>
-#include <string>
 
 namespace Ethrl {
 	class GameObject;
@@ -28,6 +27,7 @@ namespace Ethrl {
 		~PrefabCreator() = default;
 
 		PrefabCreator(std::unique_ptr<T> Instance) : m_Instance{ std::move(Instance) } {}
+
 		std::unique_ptr<GameObject> Create() override {
 			return m_Instance->Clone(); //TODO
 		}
@@ -48,6 +48,7 @@ namespace Ethrl {
 
 		template <typename T>
 		std::unique_ptr<T> Create(const std::string& Key);
+
 	private:
 		std::map<std::string, std::unique_ptr<CreatorBase>> m_Registry;
 	};

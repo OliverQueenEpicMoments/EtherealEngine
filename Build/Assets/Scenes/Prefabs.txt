@@ -21,7 +21,7 @@
                "type":"RBPhysicsComponent",
                "Damping":0.4,
                "Data.GravityScale":1,
-               "Data.ConstrainAngle":false
+               "Data.ConstrainAngle":true
             },
             {
                "type":"CollisionComponent",

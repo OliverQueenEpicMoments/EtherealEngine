@@ -30,7 +30,6 @@ namespace Ethrl {
 		T* GetComponent();
 
 		virtual void OnCollision(Actor* Other) {}
-
 		float GetRadius() { return 0; // return m_Model.GetRadius() * std::max(m_Transform.Scale.X, m_Transform.Scale.Y); 
 		}
 
@@ -40,10 +39,10 @@ namespace Ethrl {
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 
-		void SetDestroy() { m_Destroy = true; }
-
 		void SetActive(bool active = true) { m_Active = active; }
 		bool IsActive() { return m_Active; }
+
+		void SetDestroy() { m_Destroy = true; }
 
 		Scene* GetScene() { return m_Scene; }
 
