@@ -14,6 +14,8 @@ namespace Ethrl {
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		Rect& GetSource() override;
+
 	public:
 		float fps = 0;
 		int num_columns = 0;
@@ -25,7 +27,6 @@ namespace Ethrl {
 		int frame = 0;
 		float frametimer = 0;
 
-		Rect source;
 		std::shared_ptr<Texture> m_Texture;
 	};
 }

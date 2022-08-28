@@ -15,7 +15,6 @@ namespace Ethrl {
 		virtual bool Read(const rapidjson::Value& value) override;
 
 	public:
-		Rect source;
 		std::shared_ptr<Texture> m_Texture;
 	};
 }

@@ -31,6 +31,12 @@ namespace Ethrl {
 		template<typename T>
 		T* GetActor();
 
+		template<typename T = Actor>
+		T* GetActorFromName(const std::string& Name);
+
+		template<typename T = Actor>
+		std::vector<T*> GetActorsFromTag(const std::string& Tag);
+
 		Game* GetGame() { return m_Game; };
 
 	private:
@@ -46,5 +52,28 @@ namespace Ethrl {
 			if (Result) return Result;
 		}
 		return nullptr;
+	}
+
+	template<typename T>
+	inline T* Scene::GetActorFromName(const std::string& Name) {
+		for (auto& actors : m_Actors) {
+			if (actors->GetName == Name) {
+				return dynamic_cast<T*>(actors.get());
+			}
+		}
+		return nullptr;
+	}
+
+	template<typename T>
+	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& Tag) {
+		std::vector<T*> result;
+		for (auto& actors : m_Actors) {
+			if (actors->GetTag == Tag) {
+				T* TagActor = dynamic_cast<T*>(actors.get());
+				if (TagActor) result.push_back(TagActor); 
+				//if (TagActor) result.push_back(std::move(TagActor));
+			}
+		}
+		return result;
 	}
 }

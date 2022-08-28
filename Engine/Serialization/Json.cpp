@@ -25,47 +25,53 @@ namespace Ethrl {
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, int& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsInt() == false) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsInt()) {
 				LOG("Error reading json data %s", Name.c_str());
 				return false;
 			}
-
 			Data = value[Name.c_str()].GetInt();
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, float& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsNumber() == false) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsNumber()) {
 				LOG("Error reading json data %s", Name.c_str());
 				return false;
 			}
-
 			Data = value[Name.c_str()].GetFloat();
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, bool& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsBool() == false) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsBool()) {
 				LOG("Error reading json data %s", Name.c_str());
 				return false;
 			}
-
 			Data = value[Name.c_str()].GetBool();
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, std::string& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsString() == false) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsString()) {
 				LOG("Error reading json data %s", Name.c_str());
 				return false;
 			}
-
 			Data = value[Name.c_str()].GetString();
 			return true;
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, Vector2& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsArray() == false || value[Name.c_str()].Size() != 2) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsArray() || value[Name.c_str()].Size() != 2) {
 				LOG("error reading json data %s", Name.c_str());
 				return false;
 			}
@@ -82,7 +88,9 @@ namespace Ethrl {
 		}
 
 		bool Get(const rapidjson::Value& value, const std::string& Name, Color& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsArray() == false || value[Name.c_str()].Size() != 4) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsArray() || value[Name.c_str()].Size() != 4) {
 				LOG("error reading json data %s", Name.c_str());
 				return false;
 			}
@@ -100,7 +108,9 @@ namespace Ethrl {
 
 		// [0, 0, 32, 32]
 		bool Get(const rapidjson::Value& value, const std::string& Name, Rect& Data) {
-			if (value.HasMember(Name.c_str()) == false || value[Name.c_str()].IsArray() == false || value[Name.c_str()].Size() != 4) {
+			if (!value.HasMember(Name.c_str())) return false;
+
+			if (!value[Name.c_str()].IsArray() || value[Name.c_str()].Size() != 4) {
 				LOG("error reading json data %s", Name.c_str());
 				return false;
 			}

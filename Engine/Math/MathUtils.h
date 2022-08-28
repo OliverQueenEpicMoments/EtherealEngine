@@ -1,4 +1,5 @@
 #pragma once
+#include <cmath>
 
 namespace Math {
 	constexpr float Pi = 3.14159265359f; // 180
@@ -13,6 +14,46 @@ namespace Math {
 		return Radians * (180 / Pi);
 	}
 
-	int SQR(int V);
-	inline int Half(int V) { return V / 2; }
+	template <typename T>
+	T Clamp(T Value, T Min, T Max) {
+		if (Value < Min) return Min;
+		if (Value > Max) return Max;
+
+		return Value;
+	}
+
+	template <typename T>
+	T Lerp(T Min, T Max, float t) {
+		t = Clamp(t, 0.0f, 1.0f);
+
+		return Min + ((Max - Min) * t);
+	}
+
+	template <typename T>
+	T Normalize(T Value, T Min, T Max) {
+		return (Value - Min) / (Max - Min);
+	}
+
+	template <typename T>
+	T Remap(T Value, T InMin, T InMax, T OutMin, T OutMax) {
+		return Lerp(OutMin, OutMax, Normalize(Value, InMin, InMax));
+	}
+
+	template <typename T>
+	T Mod(T Numerator, T Denominator) {
+		return std::fmod(Numerator, Denominator);
+	}
+
+	template <>
+	inline int Mod(int Numerator, int Denominator) {
+		return Numerator % Denominator;
+	}
+
+	template <typename T>
+	T Wrap(T Value, T Min, T Max) {
+		if (Value < Min) return Max - Mod((Min - Value), (Max - Min));
+		if (Value > Max) return Min + Mod((Value - Min), (Max - Min));
+
+		return Value;
+	}
 }

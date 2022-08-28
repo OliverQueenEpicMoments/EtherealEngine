@@ -57,6 +57,10 @@ namespace Ethrl {
 		Vector2 Normalized();
 		void Normalize();
 
+		float Dot(const Vector2& V);
+		float GetAngleBetween(const Vector2& V);
+		float GetSignedAngleBetween(const Vector2& V);
+
 		float GetAngle();
 		static Vector2 Rotate(const Vector2& V, float Angle);
 
@@ -83,6 +87,22 @@ namespace Ethrl {
 	}
 
 	inline void Vector2::Normalize() { (*this) /= Length(); }
+
+	inline float Vector2::Dot(const Vector2& V) {
+		return X * V.X + Y * V.Y;
+	}
+
+	inline float Vector2::GetAngleBetween(const Vector2& V) {
+		return std::acos(Dot(V));
+	}
+
+	inline float Vector2::GetSignedAngleBetween(const Vector2& V) {
+		float y = X * V.Y - y * V.X;
+		float x = x * V.X + y * V.Y;
+
+		return std::atan2(y, x);
+	}
+
 	inline float Vector2::GetAngle() { return std::atan2(Y, X); }
 
 	inline Vector2 Vector2::Rotate(const Vector2& V, float Angle) {

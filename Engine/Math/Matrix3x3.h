@@ -20,6 +20,10 @@ namespace Ethrl {
 		static Matrix3x3 CreateRotation(float Radians);
 		static Matrix3x3 CreateTranslation(const Vector2& translate);
 
+		Vector2 GetTranslation() const;
+		float GetRotation() const;
+		Vector2 GetScale() const;
+
 		static const Matrix3x3 Identity;
 		static const Matrix3x3 Zero;
 	};
@@ -97,5 +101,20 @@ namespace Ethrl {
 		MX[1][2] = translate.Y;
 
 		return MX;
+	}
+
+	inline Vector2 Matrix3x3::GetTranslation() const {
+		return {Rows[0][2], Rows[1][2]};
+	}
+
+	inline float Matrix3x3::GetRotation() const {
+		return std::atan2(Rows[1][0], Rows[0][0]);
+	}
+
+	inline Vector2 Matrix3x3::GetScale() const {
+		Vector2 x = {Rows[0][0], Rows[0][1]};
+		Vector2 y = {Rows[1][0], Rows[1][1]};
+
+		return {x.Length(), y.Length()};
 	}
 }

@@ -9,7 +9,7 @@ namespace Ethrl {
 	}
 
 	void SpriteComponent::Draw(Renderer& renderer) {
-		renderer.Draw(m_Texture, source, m_Owner->m_Transform);
+		renderer.Draw(m_Texture, GetSource(), m_Owner->m_Transform);
 	}
 
 	bool SpriteComponent::Write(const rapidjson::Value& value) const {

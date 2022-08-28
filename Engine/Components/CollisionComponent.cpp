@@ -6,6 +6,12 @@ namespace Ethrl {
     void CollisionComponent::Initialize() {
         auto component = m_Owner->GetComponent<RBPhysicsComponent>();
         if (component) {
+            if (Data.Size.X == 0 && Data.Size.Y == 0) {
+                auto rendercomponent = m_Owner->GetComponent<RenderComponent>();
+                if (rendercomponent) {
+                    Data.Size = Vector2{}; // IDK how to do this
+                }
+            }
             g_PhysicsSystem.SetCollisionBox(component->m_Body, Data, m_Owner);
         }
     }
