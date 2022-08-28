@@ -28,9 +28,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\Asteroid.txt" />
-    <Text Include="..\Build\Assets\Models\Bullet.txt" />
-    <Text Include="..\Build\Assets\Models\Player.txt" />
     <Text Include="..\Build\Assets\Scenes\Level.txt" />
     <Text Include="..\Build\Assets\Scenes\Prefabs.txt" />
     <Text Include="..\Build\Assets\Scenes\Tilemap.txt" />

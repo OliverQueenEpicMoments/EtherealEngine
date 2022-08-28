@@ -19,9 +19,6 @@
     <Filter Include="Resource Files\Images">
       <UniqueIdentifier>{06886863-a13b-4193-a98b-e29074f99589}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Models">
-      <UniqueIdentifier>{23c925be-d74c-40c6-b7d7-f8084fd79540}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Sounds">
       <UniqueIdentifier>{64bb3f09-3c9d-4c10-ad1d-412e2ee891c4}</UniqueIdentifier>
     </Filter>
@@ -38,15 +35,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="..\Build\Assets\Asteroid.txt">
-      <Filter>Resource Files\Models</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\Bullet.txt">
-      <Filter>Resource Files\Models</Filter>
-    </Text>
-    <Text Include="..\Build\Assets\Models\Player.txt">
-      <Filter>Resource Files\Models</Filter>
-    </Text>
     <Text Include="..\Build\Assets\Scenes\Level.txt">
       <Filter>Resource Files\Scenes</Filter>
     </Text>
