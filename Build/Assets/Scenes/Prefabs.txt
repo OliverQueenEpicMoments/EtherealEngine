@@ -25,10 +25,6 @@
             },
             {
                "type":"CollisionComponent",
-               "Data.Size":[
-                  48,
-                  48
-               ],
                "Data.Restitution":0.7
             },
             {

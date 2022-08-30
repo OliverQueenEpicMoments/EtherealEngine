@@ -10,7 +10,6 @@ namespace Ethrl {
 
 		virtual Rect& GetSource() { return source; }
 
-		friend class CollisionComponent;
 	protected:
 		Rect source;
 	};

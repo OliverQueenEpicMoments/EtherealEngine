@@ -56,8 +56,6 @@ namespace Ethrl {
 				else {
 					Add(std::move(actor));
 				}
-
-				
 			}
 		}
 		return true;
@@ -69,7 +67,7 @@ namespace Ethrl {
 	}
 
 	void Scene::RemoveAll() {
-		//for ()
+		for (auto& actor : m_Actors) actor->SetDestroy();
 
 		m_Actors.clear();
 	}

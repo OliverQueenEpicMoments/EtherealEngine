@@ -25,8 +25,7 @@ void TheGame::Initialize() {
 
 		m_Scene->Add(std::move(actor));
 	}
-
-	Ethrl::g_EventManager.Subscribe("Event Add Points", std::bind(&TheGame::OnAddPoints, this, std::placeholders::_1));
+	//Ethrl::g_EventManager.Subscribe("Event Add Points", std::bind(&TheGame::OnAddPoints, this, std::placeholders::_1));
 }
 
 void TheGame::Shutdown() {
@@ -63,7 +62,7 @@ void TheGame::Draw(Ethrl::Renderer& renderer) {
 	m_Scene->Draw(renderer);
 }
 
-void TheGame::OnAddPoints(const Ethrl::Event& event_) {
+/*void TheGame::OnAddPoints(const Ethrl::Event& event_) {
 	AddPoints(std::get<int>(event_.Data));
 
 	std::cout << event_.Name << std::endl;
@@ -73,4 +72,4 @@ void TheGame::OnAddPoints(const Ethrl::Event& event_) {
 void TheGame::OnPlayerDeath(const Ethrl::Event& event_) {
 	m_GameState = GameState::PlayerDeath;
 	m_StateTimer = 3;
-}
+}*/

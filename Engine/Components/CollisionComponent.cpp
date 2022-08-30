@@ -9,7 +9,7 @@ namespace Ethrl {
             if (Data.Size.X == 0 && Data.Size.Y == 0) {
                 auto rendercomponent = m_Owner->GetComponent<RenderComponent>();
                 if (rendercomponent) {
-                    Data.Size = Vector2{rendercomponent->source.W, rendercomponent->source.H };
+                    Data.Size = Vector2{rendercomponent->GetSource().W, rendercomponent->GetSource().H};
                 }
             }
             g_PhysicsSystem.SetCollisionBox(component->m_Body, Data, m_Owner);
