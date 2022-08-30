@@ -1,5 +1,6 @@
 #pragma once
 #include"FrameWork/Game.h"
+#include "FrameWork/Event.h"
 
 class TheGame : public Ethrl::Game {
 public:
@@ -17,8 +18,8 @@ public:
 	virtual void Update() override;
 	virtual void Draw(Ethrl::Renderer& renderer) override;
 
-	/*void OnAddPoints(const Ethrl::Event& event_);
-	void OnPlayerDeath(const Ethrl::Event& event_);*/
+	void OnAddPoints(const Ethrl::Event& event_);
+	void OnPlayerDeath(const Ethrl::Event& event_);
 
 private:
 	GameState m_GameState = GameState::TitleScreen;

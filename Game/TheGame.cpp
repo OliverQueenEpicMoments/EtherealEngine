@@ -18,14 +18,7 @@ void TheGame::Initialize() {
 
 	m_Scene->Initialize();
 
-	for (int i = 0; i < 10; i++) {
-		auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
-		actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
-		actor->Initialize();
-
-		m_Scene->Add(std::move(actor));
-	}
-	//Ethrl::g_EventManager.Subscribe("Event Add Points", std::bind(&TheGame::OnAddPoints, this, std::placeholders::_1));
+	Ethrl::g_EventManager.Subscribe("Event Add Points", std::bind(&TheGame::OnAddPoints, this, std::placeholders::_1));
 }
 
 void TheGame::Shutdown() {
@@ -33,28 +26,40 @@ void TheGame::Shutdown() {
 }
 
 void TheGame::Update() {
-	switch (m_GameState)
-	{
-	case TheGame::GameState::TitleScreen:
+	switch (m_GameState) {
+	case GameState::TitleScreen:
+		if (Ethrl::g_InputSystem.GetKeyState(Ethrl::Key_Space) == Ethrl::InputSystem::State::Pressed) {
+			//m_Scene->GetActorFromName("Title")->SetActive(false);
 
+			m_GameState = GameState::StartLevel;
+		}
 		break;
-	case TheGame::GameState::StartLevel:
 
-		break;
-	case TheGame::GameState::Game:
+	case GameState::StartLevel:
+		for (int i = 0; i < 10; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
+			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
+			actor->Initialize();
 
+			m_Scene->Add(std::move(actor));
+		}
+		m_GameState = GameState::Game;
 		break;
-	case TheGame::GameState::PlayerDeath:
 
+	case GameState::Game:
 		break;
-	case TheGame::GameState::GameOver:
 
+	case GameState::PlayerDeath:
+		m_StateTimer -= Ethrl::g_Time.DeltaTime;
+		if (m_StateTimer) m_GameState = (m_Lives > 0) ? GameState::StartLevel : GameState::GameOver;
 		break;
+
+	case GameState::GameOver:
+		break;
+
 	default:
-
 		break;
 	}
-
 	m_Scene->Update();
 }
 
@@ -62,7 +67,7 @@ void TheGame::Draw(Ethrl::Renderer& renderer) {
 	m_Scene->Draw(renderer);
 }
 
-/*void TheGame::OnAddPoints(const Ethrl::Event& event_) {
+void TheGame::OnAddPoints(const Ethrl::Event& event_) {
 	AddPoints(std::get<int>(event_.Data));
 
 	std::cout << event_.Name << std::endl;
@@ -72,4 +77,4 @@ void TheGame::Draw(Ethrl::Renderer& renderer) {
 void TheGame::OnPlayerDeath(const Ethrl::Event& event_) {
 	m_GameState = GameState::PlayerDeath;
 	m_StateTimer = 3;
-}*/
+}

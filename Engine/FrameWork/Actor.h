@@ -71,7 +71,6 @@ namespace Ethrl {
 			T* Result = dynamic_cast<T*>(Component.get());
 			if (Result) return (Result);
 		}
-
 		return nullptr;
 	}
 }

@@ -23,11 +23,11 @@
       },
       {
          "type":"Actor",
-         "name":"Text",
+         "name":"Title",
          "active":true,
          "transform":{
             "Position":[
-               40,
+               400,
                30
             ],
             "Scale":[
@@ -39,7 +39,7 @@
          "components":[
             {
                "type":"TextComponent",
-               "Text":"Hello World!",
+               "Text":"Press Space To Begin",
                "FontName":"Fonts/Blox2.ttf",
                "FontSize":16,
                "Registration":[
