@@ -69,6 +69,8 @@ namespace Ethrl {
 	}
 
 	void Scene::RemoveAll() {
+		//for ()
+
 		m_Actors.clear();
 	}
 }

@@ -7,6 +7,7 @@ namespace Ethrl {
 	AudioSystem g_AudioSystem;
 	ResourceManager g_Resources;
 	PhysicsSystem g_PhysicsSystem;
+	EventManager g_EventManager;
 
 	void Engine::Register() {
 		REGISTER_CLASS(Actor);

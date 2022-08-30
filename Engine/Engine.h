@@ -19,6 +19,7 @@
 #include "FrameWork/Actor.h"
 #include "FrameWork/Singleton.h"
 #include "FrameWork/Factory.h"
+#include "FrameWork/EventManager.h"
 
 #include "Components/PlayerComponent.h"
 #include "Components/CollisionComponent.h"
@@ -43,6 +44,7 @@
 
 #include <memory>
 #include <vector>
+#include <variant>
 
 namespace Ethrl {
 	extern Renderer g_Renderer;
@@ -51,6 +53,7 @@ namespace Ethrl {
 	extern AudioSystem g_AudioSystem;
 	extern ResourceManager g_Resources;
 	extern PhysicsSystem g_PhysicsSystem;
+	extern EventManager g_EventManager;
 
 	class Engine : public Singleton<Engine> {
 	public:

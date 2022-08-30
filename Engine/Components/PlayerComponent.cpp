@@ -49,7 +49,14 @@ namespace Ethrl {
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other) {
-		if (other->GetName() == "Coin") other->SetDestroy();
+		if (other->GetName() == "Coin") {
+			Event event;
+			event.Name = "Event Add Points";
+			event.Data = 100;
+
+			g_EventManager.Notify(event);
+			other->SetDestroy();
+		} 
 
 		std::cout << "Player Enter" << std::endl; // 15/16 minutes
 	}
