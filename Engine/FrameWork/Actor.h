@@ -29,19 +29,16 @@ namespace Ethrl {
 		template<typename T>
 		T* GetComponent();
 
-		virtual void OnCollision(Actor* Other) {}
-		float GetRadius() { return 0; // return m_Model.GetRadius() * std::max(m_Transform.Scale.X, m_Transform.Scale.Y); 
-		}
-
 		const std::string& GetTag() { return tag; }
 		void SetTag(const std::string& tag) { this->tag = tag; }
 
 		const std::string& GetName() { return name; }
 		void SetName(const std::string& name) { this->name = name; }
 
-		void SetActive(bool active = true) { m_Active = active; }
 		bool IsActive() { return m_Active; }
+		void SetActive(bool active = true) { m_Active = active; }
 
+		bool IsDestroyed() { return m_Destroy; }
 		void SetDestroy() { m_Destroy = true; }
 
 		Scene* GetScene() { return m_Scene; }

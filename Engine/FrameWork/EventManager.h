@@ -18,7 +18,7 @@ namespace Ethrl {
 		void Update();
 
 		void Subscribe(const std::string& name, Event::FunctionPtr function, GameObject* reciever = nullptr);
-		void Unsubscribe(std::string& name, GameObject* reciever);
+		void Unsubscribe(const std::string& name, GameObject* reciever);
 		void Notify(const Event& event_);
 
 	private:

@@ -38,6 +38,7 @@ namespace Ethrl {
 		void DestroyBody(b2Body* body);
 
 		void SetCollisionBox(b2Body* body, const CollisionData& data, class Actor* actor = nullptr);
+		void SetCollisionBoxStatic(b2Body* body, const CollisionData& data, class Actor* actor = nullptr);
 
 		static Vector2 WorldToScreen(const Vector2& world) { return world * PixelsPerUnit; }
 		static Vector2 ScreenToWorld(const Vector2& screen) { return screen * (1.0f / PixelsPerUnit); }

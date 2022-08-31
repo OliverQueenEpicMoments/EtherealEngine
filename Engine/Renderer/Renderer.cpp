@@ -73,7 +73,7 @@ namespace Ethrl {
 		SDL_RenderCopyEx(m_renderer, texture->m_Texture, nullptr, &dest, transform.Rotation, &Center, SDL_FLIP_NONE);
 	}
 
-	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration) {
+	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration, bool FlipH) {
 		Vector2 size = Vector2{ source.W, source.H };
 		size = size * transform.Scale;
 
@@ -94,7 +94,8 @@ namespace Ethrl {
 
 		SDL_Point Center{ (int)Origin.X, (int)Origin.Y };
 
-		SDL_RenderCopyEx(m_renderer, texture->m_Texture, &src, &dest, transform.Rotation, &Center, SDL_FLIP_NONE);
+		SDL_RendererFlip flip = (FlipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, &src, &dest, transform.Rotation, &Center, flip);
 	}
 
 	void Renderer::DrawLine(float X1, float Y1, float X2, float Y2) {

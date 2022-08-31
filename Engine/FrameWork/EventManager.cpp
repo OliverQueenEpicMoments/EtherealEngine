@@ -20,7 +20,7 @@ void Ethrl::EventManager::Subscribe(const std::string& name, Event::FunctionPtr 
 	m_Events[name].push_back(observer);
 }
 
-void Ethrl::EventManager::Unsubscribe(std::string& name, GameObject* reciever) {
+void Ethrl::EventManager::Unsubscribe(const std::string& name, GameObject* reciever) {
 
 }
 

@@ -17,7 +17,9 @@ namespace Ethrl {
 	void RBPhysicsComponent::Update() {
 		Vector2 position = B2VEC2_TO_VECTOR2(m_Body->GetPosition());
 		m_Owner->m_Transform.Position = PhysicsSystem::WorldToScreen(position);
-		m_Owner->m_Transform.Rotation = m_Body->GetAngle();
+		m_Owner->m_Transform.Rotation = Math::RadToDeg(m_Body->GetAngle());
+
+		Velocity = B2VEC2_TO_VECTOR2(m_Body->GetLinearVelocity());
 	}
 
 	void RBPhysicsComponent::ApplyForce(const Vector2& Force) {

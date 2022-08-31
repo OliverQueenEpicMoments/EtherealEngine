@@ -1,7 +1,10 @@
 #include "TheGame.h"
 #include "Engine.h"
+#include "GameComponents/EnemyComponent.h"
 
 void TheGame::Initialize() {
+	REGISTER_CLASS(EnemyComponent);
+
 	m_Scene = std::make_unique<Ethrl::Scene>();
 
 	rapidjson::Document document;
@@ -10,7 +13,7 @@ void TheGame::Initialize() {
 	for (std::string SceneName : SceneNames) {
 		bool success = Ethrl::Json::Load(SceneName, document);
 		if (!success) {
-			LOG("Could not load sxene %s", SceneName.c_str());
+			LOG("Could not load scene %s", SceneName.c_str());
 			continue;
 		}
 		m_Scene->Read(document);
@@ -18,7 +21,8 @@ void TheGame::Initialize() {
 
 	m_Scene->Initialize();
 
-	Ethrl::g_EventManager.Subscribe("Event Add Points", std::bind(&TheGame::OnAddPoints, this, std::placeholders::_1));
+	Ethrl::g_EventManager.Subscribe("EVENT_ADD_POINTS", std::bind(&TheGame::OnNotify, this, std::placeholders::_1));
+	Ethrl::g_EventManager.Subscribe("EVENT_PLAYER_DEAD", std::bind(&TheGame::OnNotify, this, std::placeholders::_1));
 }
 
 void TheGame::Shutdown() {
@@ -29,7 +33,7 @@ void TheGame::Update() {
 	switch (m_GameState) {
 	case GameState::TitleScreen:
 		if (Ethrl::g_InputSystem.GetKeyState(Ethrl::Key_Space) == Ethrl::InputSystem::State::Pressed) {
-			//m_Scene->GetActorFromName("Title")->SetActive(false);
+			m_Scene->GetActorFromName("Title")->SetActive(false);
 
 			m_GameState = GameState::StartLevel;
 		}
@@ -38,6 +42,14 @@ void TheGame::Update() {
 	case GameState::StartLevel:
 		for (int i = 0; i < 10; i++) {
 			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
+			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
+			actor->Initialize();
+
+			m_Scene->Add(std::move(actor));
+		}
+
+		for (int i = 0; i < 3; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Ghost");
 			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
 			actor->Initialize();
 
@@ -76,5 +88,19 @@ void TheGame::OnAddPoints(const Ethrl::Event& event_) {
 
 void TheGame::OnPlayerDeath(const Ethrl::Event& event_) {
 	m_GameState = GameState::PlayerDeath;
+	m_Lives--;
 	m_StateTimer = 3;
+}
+
+void TheGame::OnNotify(const Ethrl::Event& event) {
+	if (event.Name == "EVENT_ADD_POINTS") {
+		AddPoints(std::get<int>(event.Data));
+		std::cout << GetScore() << std::endl;
+	}
+
+	if (event.Name == "EVENT_PLAYER_DEAD") {
+		m_GameState = GameState::PlayerDeath;
+		m_Lives--;
+		m_StateTimer = 3;
+	}
 }

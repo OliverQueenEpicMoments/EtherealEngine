@@ -51,4 +51,28 @@ namespace Ethrl {
 
 		body->CreateFixture(&fixtureDef);
 	}
+
+	void PhysicsSystem::SetCollisionBoxStatic(b2Body* body, const CollisionData& data, Actor* actor) {
+		Vector2 WorldSize = PhysicsSystem::ScreenToWorld(data.Size * 0.5f);
+
+		b2Vec2 VS[4] = {
+			{ -WorldSize.X, -WorldSize.Y },
+			{  WorldSize.X, -WorldSize.Y },
+			{  WorldSize.X,  WorldSize.Y },
+			{ -WorldSize.X,  WorldSize.Y },
+		};
+
+		b2ChainShape Shape;
+		Shape.CreateLoop(VS, 4);
+
+		b2FixtureDef FixtureDef;
+		FixtureDef.density = data.Density;
+		FixtureDef.friction = data.Friction;
+		FixtureDef.restitution = data.Restitution;
+		FixtureDef.isSensor = data.IsTrigger;
+		FixtureDef.shape = &Shape;
+		FixtureDef.userData.pointer = reinterpret_cast<uintptr_t>(actor);
+
+		body->CreateFixture(&FixtureDef);
+	}
 }

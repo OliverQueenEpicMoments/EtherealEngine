@@ -16,7 +16,7 @@ namespace Ethrl {
     }
 
     void SpriteAnimComponent::Draw(Renderer& renderer) {
-        renderer.Draw(m_Texture, GetSource(), m_Owner->m_Transform);
+        renderer.Draw(m_Texture, GetSource(), m_Owner->m_Transform, Registration, HorizontalFlip);
     }
 
     bool SpriteAnimComponent::Write(const rapidjson::Value& value) const {

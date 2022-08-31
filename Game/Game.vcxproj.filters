@@ -25,6 +25,9 @@
     <Filter Include="Resource Files\Scenes">
       <UniqueIdentifier>{7f50de67-b807-44a8-8985-5c9d252a1895}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameComponents">
+      <UniqueIdentifier>{d2e5a691-245a-4177-bbe1-890c26fb4749}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -32,6 +35,9 @@
     </ClCompile>
     <ClCompile Include="TheGame.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GameComponents\EnemyComponent.cpp">
+      <Filter>GameComponents</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +64,9 @@
     <Font Include="..\Build\Assets\Fonts\Royal Inferno.ttf">
       <Filter>Resource Files\Fonts</Filter>
     </Font>
+    <Font Include="..\Build\Assets\Fonts\MarioKartDS.ttf">
+      <Filter>Resource Files\Fonts</Filter>
+    </Font>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Build\Assets\Images\Kirby.png">
@@ -73,6 +82,12 @@
       <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Build\Assets\Images\Tilemap2.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Build\Assets\Images\GhostIdle.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Build\Assets\Images\HeroIdle.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
@@ -99,6 +114,9 @@
   <ItemGroup>
     <ClInclude Include="TheGame.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameComponents\EnemyComponent.h">
+      <Filter>GameComponents</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

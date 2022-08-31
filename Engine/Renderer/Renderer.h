@@ -26,7 +26,7 @@ namespace Ethrl {
 
 		void Draw(std::shared_ptr<Texture> texture, const Vector2& position, float Angle = 0, const Vector2& Scale = Vector2{ 1, 1 }, const Vector2& Registration = Vector2{.5f, .5f});
 		void Draw(std::shared_ptr<Texture> texture, const Transform& transform, const Vector2& Registration = Vector2{ .5f, .5f });
-		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration = Vector2{ .5f, .5f });
+		void Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration = Vector2{ .5f, .5f }, bool FlipH = false);
 
 		void DrawLine(float X1, float Y1, float X2, float Y2);
 		void DrawLine(const Vector2& V1, const Vector2& V2, const Color& color);

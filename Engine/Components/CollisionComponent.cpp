@@ -12,7 +12,13 @@ namespace Ethrl {
                     Data.Size = Vector2{rendercomponent->GetSource().W, rendercomponent->GetSource().H};
                 }
             }
-            g_PhysicsSystem.SetCollisionBox(component->m_Body, Data, m_Owner);
+            Data.Size = Data.Size * ScaleOffset;// *m_Owner->m_Transform.Scale;
+
+            if (component->m_Body->GetType() == b2_staticBody) {
+                g_PhysicsSystem.SetCollisionBoxStatic(component->m_Body, Data, m_Owner);
+            } else {
+                g_PhysicsSystem.SetCollisionBox(component->m_Body, Data, m_Owner);
+            }
         }
     }
 
@@ -38,6 +44,7 @@ namespace Ethrl {
         READ_DATA(value, Data.Friction);
         READ_DATA(value, Data.Restitution);
         READ_DATA(value, Data.IsTrigger);
+        READ_DATA(value, ScaleOffset);
 
         return true;
     }

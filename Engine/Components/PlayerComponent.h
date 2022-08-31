@@ -2,9 +2,10 @@
 #include "FrameWork/Component.h"
 #include "FrameWork/Actor.h"
 #include "Physics/Collision.h"
+#include "CharacterComponent.h"
 
 namespace Ethrl {
-	class PlayerComponent : public Component, public ICollision {
+	class PlayerComponent : public CharacterComponent {
 	public:
 		PlayerComponent() = default;
 
@@ -19,7 +20,9 @@ namespace Ethrl {
 		virtual bool Write(const rapidjson::Value& value) const override;
 		virtual bool Read(const rapidjson::Value& value) override;
 
+		virtual void OnNotify(const Event& event) override;
+
 	public:
-		float Speed = 300.0f;
+		float Jump = 3000.0f;
 	};
 }

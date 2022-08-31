@@ -14,4 +14,9 @@ namespace Ethrl {
 		GameObject* Reciever = nullptr;
 		std::variant <int, bool, float, std::string> Data;
 	};
+
+	class INotify {
+	public:
+		virtual void OnNotify(const Event& event) = 0;
+	};
 }

@@ -12,6 +12,8 @@ namespace Ethrl {
 			Actor* actorA = (Actor*)(FixtureA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(FixtureB->GetUserData().pointer);
 
+			if (actorA->IsDestroyed() || actorB->IsDestroyed()) return;
+
 			if (actorA->GetComponent<CollisionComponent>()) {
 				actorA->GetComponent<CollisionComponent>()->OnCollisionEnter(actorB);
 			}
@@ -29,6 +31,8 @@ namespace Ethrl {
 		if (FixtureA->GetUserData().pointer && FixtureB->GetUserData().pointer) {
 			Actor* actorA = (Actor*)(FixtureA->GetUserData().pointer);
 			Actor* actorB = (Actor*)(FixtureB->GetUserData().pointer);
+
+			if (actorA->IsDestroyed() || actorB->IsDestroyed()) return;
 
 			if (actorA->GetComponent<CollisionComponent>()) {
 				actorA->GetComponent<CollisionComponent>()->OnCollisionExit(actorB);

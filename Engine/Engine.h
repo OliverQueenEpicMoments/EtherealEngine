@@ -31,6 +31,7 @@
 #include "Components/RBPhysicsComponent.h"
 #include "Components/TextComponent.h"
 #include "Components/TilemapComponent.h"
+#include "Components/CharacterComponent.h"
 
 #include "Serialization/Json.h"
 

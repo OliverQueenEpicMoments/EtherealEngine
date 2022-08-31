@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="GameComponents\EnemyComponent.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="TheGame.cpp" />
   </ItemGroup>
@@ -34,12 +35,15 @@
   </ItemGroup>
   <ItemGroup>
     <Font Include="..\Build\Assets\Fonts\Blox2.ttf" />
+    <Font Include="..\Build\Assets\Fonts\MarioKartDS.ttf" />
     <Font Include="..\Build\Assets\Fonts\PhoenixOne.ttf" />
     <Font Include="..\Build\Assets\Fonts\PhoenixTwo.ttf" />
     <Font Include="..\Build\Assets\Fonts\Royal Inferno.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\Build\Assets\Images\Coin.png" />
+    <Image Include="..\Build\Assets\Images\GhostIdle.png" />
+    <Image Include="..\Build\Assets\Images\HeroIdle.png" />
     <Image Include="..\Build\Assets\Images\Kirby.png" />
     <Image Include="..\Build\Assets\Images\sf2.bmp" />
     <Image Include="..\Build\Assets\Images\Tilemap.png" />
@@ -54,6 +58,7 @@
     <Media Include="..\Build\Assets\Sounds\Theme.mp3" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="GameComponents\EnemyComponent.h" />
     <ClInclude Include="TheGame.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

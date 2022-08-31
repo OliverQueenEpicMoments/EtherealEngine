@@ -26,6 +26,8 @@ namespace Ethrl {
 
 	private:
 		PhysicsSystem::CollisionData Data;
+		Vector2 ScaleOffset = { 1, 1 };
+
 		FunctionPtr m_EnterFunction;
 		FunctionPtr m_ExitFunction;
 	};

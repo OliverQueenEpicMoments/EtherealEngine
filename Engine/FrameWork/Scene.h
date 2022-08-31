@@ -57,7 +57,7 @@ namespace Ethrl {
 	template<typename T>
 	inline T* Scene::GetActorFromName(const std::string& Name) {
 		for (auto& actors : m_Actors) {
-			if (actors->GetName == Name) {
+			if (actors->GetName() == Name) {
 				return dynamic_cast<T*>(actors.get());
 			}
 		}
@@ -68,7 +68,7 @@ namespace Ethrl {
 	inline std::vector<T*> Scene::GetActorsFromTag(const std::string& Tag) {
 		std::vector<T*> result;
 		for (auto& actors : m_Actors) {
-			if (actors->GetTag == Tag) {
+			if (actors->GetTag() == Tag) {
 				T* TagActor = dynamic_cast<T*>(actors.get());
 				if (TagActor) result.push_back(TagActor); 
 				//if (TagActor) result.push_back(std::move(TagActor));
