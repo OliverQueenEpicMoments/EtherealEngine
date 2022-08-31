@@ -59,6 +59,11 @@ void TheGame::Update() {
 		break;
 
 	case GameState::Game:
+	{
+		auto actor = m_Scene->GetActorFromName("Score");
+		auto component = actor->GetComponent<Ethrl::TextComponent>();
+		if (component) component->SetText(std::to_string(m_Score));
+	}
 		break;
 
 	case GameState::PlayerDeath:

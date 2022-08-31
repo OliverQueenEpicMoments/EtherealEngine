@@ -12,7 +12,7 @@ namespace Ethrl {
                     Data.Size = Vector2{rendercomponent->GetSource().W, rendercomponent->GetSource().H};
                 }
             }
-            Data.Size = Data.Size * ScaleOffset;// *m_Owner->m_Transform.Scale;
+            Data.Size = Data.Size * ScaleOffset;// * m_Owner->m_Transform.Scale;
 
             if (component->m_Body->GetType() == b2_staticBody) {
                 g_PhysicsSystem.SetCollisionBoxStatic(component->m_Body, Data, m_Owner);

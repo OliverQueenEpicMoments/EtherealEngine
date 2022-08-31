@@ -1,6 +1,7 @@
 #pragma once
-#include "../Math/Color.h"
-#include "../Math/Vector2.h"
+#include "Math/Color.h"
+#include "Math/Vector2.h"
+#include "Math/Matrix3x3.h"
 #include "Texture.h"
 
 struct SDL_Renderer;
@@ -36,6 +37,9 @@ namespace Ethrl {
 		int GetWidth() { return m_Width; }
 		int GetHeight() { return m_Height; }
 
+		void SetViewMatrix(const Matrix3x3& view) { m_View = view; }
+		void SetViewportMatrix(const Matrix3x3& viewport) { m_Viewport = viewport; }
+
 	private:
 		int m_Width = 0;
 		int m_Height = 0;
@@ -44,5 +48,7 @@ namespace Ethrl {
 
 		SDL_Renderer* m_renderer{ nullptr };
 		SDL_Window* m_window{ nullptr };
+		Matrix3x3 m_View;
+		Matrix3x3 m_Viewport;
 	};
 }

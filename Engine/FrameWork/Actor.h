@@ -52,6 +52,8 @@ namespace Ethrl {
 		std::string name;
 		std::string tag;
 
+		float LifeSpan = 0;
+
 		bool m_Active = true;
 		bool m_Destroy = false;
 

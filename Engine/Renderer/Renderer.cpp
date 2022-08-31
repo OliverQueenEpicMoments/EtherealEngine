@@ -9,6 +9,9 @@
 
 namespace Ethrl {
 	void Renderer::Initialize() {
+		m_View = Matrix3x3::Identity;
+		m_Viewport = Matrix3x3::Identity;
+
 		SDL_Init(SDL_INIT_VIDEO);
 		IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG);
 		TTF_Init();
@@ -74,11 +77,13 @@ namespace Ethrl {
 	}
 
 	void Renderer::Draw(std::shared_ptr<Texture> texture, const Rect& source, const Transform& transform, const Vector2& Registration, bool FlipH) {
+		Matrix3x3 mx = m_Viewport * m_View * transform.matrix;
+
 		Vector2 size = Vector2{ source.W, source.H };
-		size = size * transform.Scale;
+		size = size * mx.GetScale();
 
 		Vector2 Origin = size * Registration;
-		Vector2 TPosition = transform.Position - (size * .5f);
+		Vector2 TPosition = mx.GetTranslation() - Origin;
 
 		SDL_Rect dest;
 		dest.x = (int)TPosition.X;
@@ -95,7 +100,7 @@ namespace Ethrl {
 		SDL_Point Center{ (int)Origin.X, (int)Origin.Y };
 
 		SDL_RendererFlip flip = (FlipH) ? SDL_FLIP_HORIZONTAL : SDL_FLIP_NONE;
-		SDL_RenderCopyEx(m_renderer, texture->m_Texture, &src, &dest, transform.Rotation, &Center, flip);
+		SDL_RenderCopyEx(m_renderer, texture->m_Texture, &src, &dest, Math::RadToDeg(mx.GetRotation()), &Center, flip);
 	}
 
 	void Renderer::DrawLine(float X1, float Y1, float X2, float Y2) {

@@ -57,7 +57,6 @@ namespace Ethrl {
 	Vector2 Texture::GetSize() const {
 		SDL_Point point;
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &point.x, &point.y);
-		//return point.x | point.y;
 		return {point.x, point.y};
 	}
 }

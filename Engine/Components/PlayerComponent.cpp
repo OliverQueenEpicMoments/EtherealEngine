@@ -49,6 +49,10 @@ namespace Ethrl {
 		if (rendercomponent) {
 			if (VelocityX.X != 0) rendercomponent->SetHorizontalFlip(VelocityX.X < 0);
 		}
+
+		// Set Camera
+		auto Camera = m_Owner->GetScene()->GetActorFromName("Camera");
+		if (Camera) Camera->m_Transform.Position = Math::Lerp(Camera->m_Transform.Position, m_Owner->m_Transform.Position, 10 * g_Time.DeltaTime);
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other) {

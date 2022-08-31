@@ -1,11 +1,13 @@
 #include "Actor.h"
 #include "Factory.h"
 #include "Components/RenderComponent.h"
+#include "Engine.h"
 
 namespace Ethrl {
 	Actor::Actor(const Actor& other) {
 		name = other.name;
 		tag = other.tag;
+		LifeSpan = other.LifeSpan;
 		m_Transform = other.m_Transform;
 
 		m_Scene = other.m_Scene;
@@ -23,6 +25,12 @@ namespace Ethrl {
 
 	void Actor::Update() {
 		if (!m_Active) return;
+
+		if (LifeSpan != 0) {
+			LifeSpan -= g_Time.DeltaTime;
+
+			if (LifeSpan <= 0) SetDestroy();
+		}
 
 		for (auto &component : m_Components) { component->Update(); }
 		for (auto& child : m_Children) { child->Update(); }
@@ -54,6 +62,7 @@ namespace Ethrl {
 		READ_DATA(value, tag);
 		READ_DATA(value, name);
 		READ_DATA(value, m_Active);
+		READ_DATA(value, LifeSpan);
 
 		if (value.HasMember("transform")) m_Transform.Read(value["transform"]);
 

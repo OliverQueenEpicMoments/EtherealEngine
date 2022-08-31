@@ -4,6 +4,7 @@
 			"type":"Actor",
 			"name":"Coin",
 			"tag":"Pickup",
+			"LifeSpan":0,
 			"prefab":true,
 			"transform":{
 				"Position":[
