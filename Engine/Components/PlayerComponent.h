@@ -24,5 +24,7 @@ namespace Ethrl {
 
 	public:
 		float Jump = 3000.0f;
+
+		int m_GroundCount = 0;
 	};
 }

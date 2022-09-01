@@ -30,12 +30,17 @@
 				},
 				{
 					"type":"SpriteAnimComponent",
-					"SpriteName":"Images/Coin.png",
-					"fps":12,
-					"num_columns":8,
-					"num_rows":1,
-					"start_frame":1,
-					"end_frame":8
+					"sequences":[
+						{
+							"sequence.Name":"Idle",
+							"sequence.fps":12,
+							"sequence.num_columns":8,
+							"sequence.num_rows":1,
+							"sequence.start_frame":1,
+							"sequence.end_frame":8,
+							"TextureName":"Images/Coin.png"
+						}
+					]
 				}
 			]
 		},
@@ -71,17 +76,25 @@
 				{
 					"type":"CollisionComponent",
 					"Data.Restitution":0.7,
-					"ScaleOffset": [ 0.5, 0.5 ],
+					"ScaleOffset":[
+						0.5,
+						0.5
+					],
 					"Data.IsTrigger":true
 				},
 				{
 					"type":"SpriteAnimComponent",
-					"SpriteName":"Images/GhostIdle.png",
-					"fps":12,
-					"num_columns":7,
-					"num_rows":1,
-					"start_frame":1,
-					"end_frame":7
+					"sequences":[
+						{
+							"sequence.Name":"Idle",
+							"sequence.fps":12,
+							"sequence.num_columns":7,
+							"sequence.num_rows":1,
+							"sequence.start_frame":1,
+							"sequence.end_frame":7,
+							"TextureName":"Images/GhostIdle.png"
+						}
+					]
 				}
 			]
 		}

@@ -72,7 +72,10 @@
 			"components":[
 				{
 					"type":"CameraComponent",
-					"ViewportSize": [800, 600]
+					"ViewportSize":[
+						800,
+						600
+					]
 				}
 			]
 		},
@@ -111,12 +114,27 @@
 				},
 				{
 					"type":"SpriteAnimComponent",
-					"SpriteName":"Images/Run.png",
-					"fps":12,
-					"num_columns":12,
-					"num_rows":1,
-					"start_frame":1,
-					"end_frame":12
+					"DefaultSequence":"Idle",
+					"sequences":[
+						{
+							"sequence.Name":"Run",
+							"sequence.fps":12,
+							"sequence.num_columns":12,
+							"sequence.num_rows":1,
+							"sequence.start_frame":1,
+							"sequence.end_frame":12,
+							"TextureName":"Images/Run.png"
+						},
+						{
+							"sequence.Name":"Idle",
+							"sequence.fps":12,
+							"sequence.num_columns":4,
+							"sequence.num_rows":1,
+							"sequence.start_frame":1,
+							"sequence.end_frame":4,
+							"TextureName":"Images/HeroIdle.png"
+						}
+					]
 				},
 				{
 					"type":"AudioComponent",

@@ -15,7 +15,7 @@ namespace Ethrl {
 		// Update transform with input
 		float Thrust = 0;
 		if (g_InputSystem.GetKeyState(Ethrl::Key_W) == InputSystem::State::Held) {
-			Direction = Vector2::Up;
+			//Direction = Vector2::Up;
 		}
 
 		if (g_InputSystem.GetKeyState(Ethrl::Key_A) == InputSystem::State::Held) {
@@ -30,25 +30,33 @@ namespace Ethrl {
 			Direction = Vector2::Right;
 		}
 
-		Vector2 VelocityX;
-		auto component = m_Owner->GetComponent<PhysicsComponent>();
-		if (component) {
-			component->ApplyForce(Direction * Speed);
-			VelocityX = component->Velocity;
-		} 
-
 		// Jump
-		if (g_InputSystem.GetKeyState(Ethrl::Key_Space) == InputSystem::State::Pressed) {
+		if (m_GroundCount > 0 && g_InputSystem.GetKeyState(Ethrl::Key_Space) == InputSystem::State::Pressed) {
 			auto component = m_Owner->GetComponent<PhysicsComponent>();
 			if (component) {
 				component->ApplyForce(Vector2::Up * 500);
 			}
 		}
 
-		auto rendercomponent = m_Owner->GetComponent<RenderComponent>();
-		if (rendercomponent) {
-			if (VelocityX.X != 0) rendercomponent->SetHorizontalFlip(VelocityX.X < 0);
-		}
+		Vector2 VelocityX;
+		auto component = m_Owner->GetComponent<PhysicsComponent>();
+		if (component) {
+			float Multiplier = (m_GroundCount > 0) ? 1 : 0.2f;
+
+			component->ApplyForce(Direction * Speed);
+			VelocityX = component->Velocity;
+		} 
+
+		// Animations
+		auto AnimComponent = m_Owner->GetComponent<SpriteAnimComponent>();
+		if (AnimComponent) {
+			if (VelocityX.X != 0) AnimComponent->SetHorizontalFlip(VelocityX.X < 0);
+			if (std::fabs(VelocityX.X) > 0) {
+				AnimComponent->SetSequence("Run");
+			} else {
+				AnimComponent->SetSequence("Idle");
+			}
+		} 
 
 		// Set Camera
 		auto Camera = m_Owner->GetScene()->GetActorFromName("Camera");
@@ -56,6 +64,11 @@ namespace Ethrl {
 	}
 
 	void PlayerComponent::OnCollisionEnter(Actor* other) {
+		if (other->GetTag() == "Ground") {
+			m_GroundCount++;
+			std::cout << m_GroundCount << std::endl;
+		}
+
 		if (other->GetName() == "Coin") {
 			Event event;
 			event.Name = "EVENT_ADD_POINTS";
@@ -77,7 +90,12 @@ namespace Ethrl {
 		}
 	}
 
-	void PlayerComponent::OnCollisionExit(Actor* other) {}
+	void PlayerComponent::OnCollisionExit(Actor* other) {
+		if (other->GetTag() == "Ground") {
+			m_GroundCount--;
+			std::cout << m_GroundCount << std::endl;
+		}
+	}
 
 	bool PlayerComponent::Write(const rapidjson::Value& value) const {
 		return false;
@@ -103,8 +121,5 @@ namespace Ethrl {
 				g_EventManager.Notify(event);
 			}
 		}
-		/*if (event.Name == "EVENT_HEALTH") {
-			Health += std::get<float>(event.Data);
-		}*/
 	}
 }
