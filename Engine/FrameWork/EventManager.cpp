@@ -21,7 +21,14 @@ void Ethrl::EventManager::Subscribe(const std::string& name, Event::FunctionPtr 
 }
 
 void Ethrl::EventManager::Unsubscribe(const std::string& name, GameObject* reciever) {
+	auto& observers = m_Events[name];
 
+	for (auto iter = observers.begin(); iter != observers.end(); iter++) {
+		if (iter->Reciever == reciever) {
+			observers.erase(iter);
+			break;
+		}
+	}
 }
 
 void Ethrl::EventManager::Notify(const Event& event_) {

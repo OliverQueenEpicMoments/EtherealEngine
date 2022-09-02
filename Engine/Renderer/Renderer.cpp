@@ -24,11 +24,13 @@ namespace Ethrl {
 		TTF_Quit();
 	}
 
-	void Renderer::CreateWindow(const char* Name, int Width, int Height) {
+	void Renderer::CreateWindow(const char* Name, int Width, int Height, bool Fullscreen) {
 		m_Width = Width;
 		m_Height = Height;
 
-		m_window = SDL_CreateWindow(Name, 100, 100, Width, Height, SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+		int Flags = (Fullscreen) ? SDL_WINDOW_FULLSCREEN : (SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE);
+
+		m_window = SDL_CreateWindow(Name, 100, 100, Width, Height, Flags);
 		m_renderer = SDL_CreateRenderer(m_window, -1, SDL_RENDERER_PRESENTVSYNC | SDL_RENDERER_ACCELERATED);
 	}
 	void Renderer::BeginFrame() {

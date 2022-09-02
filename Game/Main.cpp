@@ -18,7 +18,7 @@ int main() {
 	Ethrl::Engine::Instance().Register();
 
 	// Create Window
-	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600);
+	Ethrl::g_Renderer.CreateWindow("Neumont", 800, 600, false);
 	Ethrl::g_Renderer.SetClearColor(Ethrl::Color{ 100, 0, 0, 255 });
 	
 	// Create Game

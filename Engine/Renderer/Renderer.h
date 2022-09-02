@@ -20,7 +20,7 @@ namespace Ethrl {
 		void Initialize();
 		void Shutdown();
 
-		void CreateWindow(const char* Name, int Width, int Height);
+		void CreateWindow(const char* Name, int Width, int Height, bool Fullscreen = false);
 		void BeginFrame();
 		void EndFrame();
 		void SetClearColor(const Color& color) { m_ClearColor = color; }
