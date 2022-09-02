@@ -7,8 +7,7 @@
 namespace Ethrl {
 	class InputSystem {
 	public:
-		enum State
-		{
+		enum State {
 			Idle,
 			Pressed,
 			Held,

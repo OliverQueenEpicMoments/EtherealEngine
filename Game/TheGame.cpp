@@ -42,19 +42,53 @@ void TheGame::Update() {
 	case GameState::StartLevel:
 		for (int i = 0; i < 10; i++) {
 			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
-			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
+			actor->m_Transform.Position = { Ethrl::RandomF(150, 1250), 100.0f };
 			actor->Initialize();
 
 			m_Scene->Add(std::move(actor));
 		}
+
 
 		for (int i = 0; i < 3; i++) {
 			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Ghost");
-			actor->m_Transform.Position = { Ethrl::RandomF(0, 800), 100.0f };
+			actor->m_Transform.Position = { Ethrl::RandomF(150, 800), 100.0f };
 			actor->Initialize();
 
 			m_Scene->Add(std::move(actor));
 		}
+
+		for (int i = 0; i < 5; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Coin");
+			actor->m_Transform.Position = { Ethrl::RandomF(500, 1000), 1150.0f };
+			actor->Initialize();
+
+			m_Scene->Add(std::move(actor));
+		}
+
+		for (int i = 0; i < 2; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Bat");
+			actor->m_Transform.Position = { Ethrl::RandomF(400, 900), 900.0f };
+			actor->Initialize();
+
+			m_Scene->Add(std::move(actor));
+		}
+
+		for (int i = 0; i < 2; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Demon");
+			actor->m_Transform.Position = { Ethrl::RandomF(500, 900), 1000.0f };
+			actor->Initialize();
+
+			m_Scene->Add(std::move(actor));
+		}
+
+		for (int i = 0; i < 2; i++) {
+			auto actor = Ethrl::Factory::Instance().Create<Ethrl::Actor>("Boss");
+			actor->m_Transform.Position = { Ethrl::RandomF(800, 1500), 2000.0f };
+			actor->Initialize();
+
+			m_Scene->Add(std::move(actor));
+		}
+
 		m_GameState = GameState::Game;
 		break;
 

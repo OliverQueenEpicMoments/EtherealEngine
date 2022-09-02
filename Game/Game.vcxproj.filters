@@ -72,9 +72,6 @@
     <Image Include="..\Build\Assets\Images\Kirby.png">
       <Filter>Resource Files\Images</Filter>
     </Image>
-    <Image Include="..\Build\Assets\Images\sf2.bmp">
-      <Filter>Resource Files\Images</Filter>
-    </Image>
     <Image Include="..\Build\Assets\Images\Coin.png">
       <Filter>Resource Files\Images</Filter>
     </Image>

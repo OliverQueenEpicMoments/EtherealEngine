@@ -7,9 +7,9 @@
 namespace Ethrl {
 	class PlayerComponent : public CharacterComponent {
 	public:
-		PlayerComponent() = default;
-
 		CLASS_DECLARATION(PlayerComponent)
+
+		PlayerComponent() = default;
 
 		void Initialize() override;
 		void Update() override;

@@ -3,6 +3,7 @@
 #include "Core/Logger.h"
 #include <SDL.h>
 #include <SDL_image.h>
+#include <cstdarg>
 
 namespace Ethrl {
 	Texture::~Texture() {
@@ -17,27 +18,7 @@ namespace Ethrl {
 
 		va_end(args);
 
-		return Create(renderer, FileName);
-	}
-
-	bool Texture::Create(Renderer& renderer, const std::string& FileName) {
-		// Load Surface
-		SDL_Surface* surface = IMG_Load(FileName.c_str());
-		if (surface == nullptr) {
-			LOG(SDL_GetError());
-			return false;
-		}
-
-		// Create Texture
-		m_Texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
-		if (m_Texture == nullptr) {
-			LOG(SDL_GetError());
-			SDL_FreeSurface(surface);
-			return false;
-		}
-		SDL_FreeSurface(surface);
-
-		return true;
+		return Load(FileName, renderer);
 	}
 
 	bool Texture::CreateFromSurface(SDL_Surface* surface, Renderer& renderer) {
@@ -54,9 +35,28 @@ namespace Ethrl {
 		return true;
 	}
 
+	bool Texture::Load(const std::string& Filename, Renderer& renderer) {
+		SDL_Surface* surface = IMG_Load(Filename.c_str());
+		if (surface == nullptr) {
+			LOG(SDL_GetError());
+			return false;
+		}
+
+		m_Texture = SDL_CreateTextureFromSurface(renderer.m_renderer, surface);
+		if (m_Texture == nullptr) {
+			LOG(SDL_GetError());
+			SDL_FreeSurface(surface);
+
+			return false;
+		}
+		SDL_FreeSurface(surface);
+
+		return true;
+	}
+
 	Vector2 Texture::GetSize() const {
 		SDL_Point point;
 		SDL_QueryTexture(m_Texture, nullptr, nullptr, &point.x, &point.y);
-		return {point.x, point.y};
+		return Vector2{ point.x, point.y };
 	}
 }

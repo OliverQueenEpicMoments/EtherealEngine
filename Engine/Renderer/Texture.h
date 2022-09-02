@@ -16,8 +16,8 @@ namespace Ethrl {
 		~Texture ();
 
 		bool Create(std::string FileName, ...) override;
-		bool Create(Renderer& renderer, const std::string& FileName);
 		bool CreateFromSurface(SDL_Surface* surface, Renderer& renderer);
+		bool Load(const std::string& filename, Renderer& renderer);
 
 		Vector2 GetSize() const;
 

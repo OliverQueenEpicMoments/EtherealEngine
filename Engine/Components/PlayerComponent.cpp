@@ -11,11 +11,12 @@ namespace Ethrl {
 
 	void PlayerComponent::Update() {
 		Vector2 Direction = Vector2::Zero;
+		auto AnimComponent = m_Owner->GetComponent<SpriteAnimComponent>();
 
 		// Update transform with input
 		float Thrust = 0;
 		if (g_InputSystem.GetKeyState(Ethrl::Key_W) == InputSystem::State::Held) {
-			//Direction = Vector2::Up;
+			Direction = Vector2::Up;
 		}
 
 		if (g_InputSystem.GetKeyState(Ethrl::Key_A) == InputSystem::State::Held) {
@@ -24,18 +25,11 @@ namespace Ethrl {
 
 		if (g_InputSystem.GetKeyState(Ethrl::Key_S) == InputSystem::State::Held) {
 			Direction = Vector2::Down;
+			AnimComponent->SetSequence("Crouch");
 		}
 
 		if (g_InputSystem.GetKeyState(Ethrl::Key_D) == InputSystem::State::Held) {
 			Direction = Vector2::Right;
-		}
-
-		// Jump
-		if (m_GroundCount > 0 && g_InputSystem.GetKeyState(Ethrl::Key_Space) == InputSystem::State::Pressed) {
-			auto component = m_Owner->GetComponent<PhysicsComponent>();
-			if (component) {
-				component->ApplyForce(Vector2::Up * 500);
-			}
 		}
 
 		Vector2 VelocityX;
@@ -48,7 +42,6 @@ namespace Ethrl {
 		} 
 
 		// Animations
-		auto AnimComponent = m_Owner->GetComponent<SpriteAnimComponent>();
 		if (AnimComponent) {
 			if (VelocityX.X != 0) AnimComponent->SetHorizontalFlip(VelocityX.X < 0);
 			if (std::fabs(VelocityX.X) > 0) {
@@ -58,6 +51,19 @@ namespace Ethrl {
 			}
 		} 
 
+		// Jump
+		if (m_GroundCount > 0 && g_InputSystem.GetKeyState(Ethrl::Key_Space) == InputSystem::State::Pressed) {
+			auto component = m_Owner->GetComponent<PhysicsComponent>();
+			if (component) {
+				AnimComponent->SetSequence("Jump");
+				component->ApplyForce(Vector2::Up * 525);
+			}
+		}
+
+		if (Ethrl::g_InputSystem.GetButtonState(Ethrl::Button_Left) == Ethrl::InputSystem::State::Pressed) {
+			AnimComponent->SetSequence("Attack");
+		}
+
 		// Set Camera
 		auto Camera = m_Owner->GetScene()->GetActorFromName("Camera");
 		if (Camera) Camera->m_Transform.Position = Math::Lerp(Camera->m_Transform.Position, m_Owner->m_Transform.Position, 10 * g_Time.DeltaTime);
@@ -66,7 +72,6 @@ namespace Ethrl {
 	void PlayerComponent::OnCollisionEnter(Actor* other) {
 		if (other->GetTag() == "Ground") {
 			m_GroundCount++;
-			std::cout << m_GroundCount << std::endl;
 		}
 
 		if (other->GetName() == "Coin") {
@@ -85,6 +90,8 @@ namespace Ethrl {
 			event.Data = Damage;
 			event.Reciever = other;
 
+			std::cout << "Health: " << Health << std::endl;
+
 			g_EventManager.Notify(event);
 			other->SetDestroy();
 		}
@@ -93,7 +100,6 @@ namespace Ethrl {
 	void PlayerComponent::OnCollisionExit(Actor* other) {
 		if (other->GetTag() == "Ground") {
 			m_GroundCount--;
-			std::cout << m_GroundCount << std::endl;
 		}
 	}
 
@@ -109,9 +115,11 @@ namespace Ethrl {
 	}
 
 	void PlayerComponent::OnNotify(const Event& event) {
+		auto AnimComponent = m_Owner->GetComponent<SpriteAnimComponent>();
 		if (event.Name == "EVENT_DAMAGE") {
 			Health -= std::get<float>(event.Data);
-			std::cout << "Health: " << Health << std::endl;
+			AnimComponent->SetSequence("Damaged");
+			//std::cout << "Health: " << Health << std::endl;
 			if (Health <= 0) {
 				m_Owner->SetDestroy();
 

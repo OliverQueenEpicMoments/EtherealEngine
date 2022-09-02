@@ -46,9 +46,8 @@ namespace Ethrl {
 		m_MousePosition = Ethrl::Vector2{ X, Y };
 
 		if (GetButtonDown(Ethrl::Button_Left)) {
-			std::cout << "X: " << X << std::endl;
-			std::cout << "Y: " << Y << std::endl;
-
+			//std::cout << "X: " << X << std::endl;
+			//std::cout << "Y: " << Y << std::endl;
 		}
 
 		m_MouseButtonState[0] = Buttons & SDL_BUTTON_LMASK;

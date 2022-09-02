@@ -45,7 +45,6 @@
     <Image Include="..\Build\Assets\Images\GhostIdle.png" />
     <Image Include="..\Build\Assets\Images\HeroIdle.png" />
     <Image Include="..\Build\Assets\Images\Kirby.png" />
-    <Image Include="..\Build\Assets\Images\sf2.bmp" />
     <Image Include="..\Build\Assets\Images\Tilemap.png" />
     <Image Include="..\Build\Assets\Images\Tilemap2.png" />
   </ItemGroup>
